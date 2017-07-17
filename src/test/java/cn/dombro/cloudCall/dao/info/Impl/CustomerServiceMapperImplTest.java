@@ -18,7 +18,7 @@ public class CustomerServiceMapperImplTest {
     public void insertTest() throws Exception {
         CustomerService customerService = new CustomerService(null,"caole","123456","曹乐",
                 "61032319961028211X",Long.parseLong("17607118701"),"cleeeee@qq.com","account",100);
-        CustomerServiceMapperImpl.getServiceMapper().insertSelective(customerService);
+        CustomerServiceMapperImpl.getServiceMapper().insert(customerService);
     }
 
     @Test
