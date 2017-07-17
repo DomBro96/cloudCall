@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.dombro.cloudCall.dao.cloud.CallGradeMapper" >
+  <resultMap id="BaseResultMap" type="cn.dombro.cloudCall.entity.CallGrade" >
+    <id column="m_id" property="mId" jdbcType="INTEGER" />
+    <result column="cs_id" property="csId" jdbcType="INTEGER" />
+    <result column="p_grade" property="pGrade" jdbcType="INTEGER" />
+    <result column="p_remark" property="pRemark" jdbcType="VARCHAR" />
+    <result column="c_grade" property="cGrade" jdbcType="INTEGER" />
+    <result column="c_remark" property="cRemark" jdbcType="VARCHAR" />
+    <result column="grade" property="grade" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    m_id, cs_id, p_grade, p_remark, c_grade, c_remark, grade
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from call_grade
+    where m_id = #{mId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from call_grade
+    where m_id = #{mId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.dombro.cloudCall.entity.CallGrade" >
+    insert into call_grade (m_id, cs_id, p_grade, 
+      p_remark, c_grade, c_remark, 
+      grade)
+    values (#{mId,jdbcType=INTEGER}, #{csId,jdbcType=INTEGER}, #{pGrade,jdbcType=INTEGER}, 
+      #{pRemark,jdbcType=VARCHAR}, #{cGrade,jdbcType=INTEGER}, #{cRemark,jdbcType=VARCHAR}, 
+      #{grade,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.dombro.cloudCall.entity.CallGrade" >
+    insert into call_grade
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="csId != null" >
+        cs_id,
+      </if>
+      <if test="pGrade != null" >
+        p_grade,
+      </if>
+      <if test="pRemark != null" >
+        p_remark,
+      </if>
+      <if test="cGrade != null" >
+        c_grade,
+      </if>
+      <if test="cRemark != null" >
+        c_remark,
+      </if>
+      <if test="grade != null" >
+        grade,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mId != null" >
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="csId != null" >
+        #{csId,jdbcType=INTEGER},
+      </if>
+      <if test="pGrade != null" >
+        #{pGrade,jdbcType=INTEGER},
+      </if>
+      <if test="pRemark != null" >
+        #{pRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="cGrade != null" >
+        #{cGrade,jdbcType=INTEGER},
+      </if>
+      <if test="cRemark != null" >
+        #{cRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null" >
+        #{grade,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.dombro.cloudCall.entity.CallGrade" >
+    update call_grade
+    <set >
+      <if test="csId != null" >
+        cs_id = #{csId,jdbcType=INTEGER},
+      </if>
+      <if test="pGrade != null" >
+        p_grade = #{pGrade,jdbcType=INTEGER},
+      </if>
+      <if test="pRemark != null" >
+        p_remark = #{pRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="cGrade != null" >
+        c_grade = #{cGrade,jdbcType=INTEGER},
+      </if>
+      <if test="cRemark != null" >
+        c_remark = #{cRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null" >
+        grade = #{grade,jdbcType=INTEGER},
+      </if>
+    </set>
+    where m_id = #{mId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.dombro.cloudCall.entity.CallGrade" >
+    update call_grade
+    set cs_id = #{csId,jdbcType=INTEGER},
+      p_grade = #{pGrade,jdbcType=INTEGER},
+      p_remark = #{pRemark,jdbcType=VARCHAR},
+      c_grade = #{cGrade,jdbcType=INTEGER},
+      c_remark = #{cRemark,jdbcType=VARCHAR},
+      grade = #{grade,jdbcType=INTEGER}
+    where m_id = #{mId,jdbcType=INTEGER}
+  </update>
+</mapper>

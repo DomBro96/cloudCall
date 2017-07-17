@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.dombro.cloudCall.dao.cloud.CallMissionMapper" >
+  <resultMap id="BaseResultMap" type="cn.dombro.cloudCall.entity.CallMission" >
+    <id column="running_id" property="runningId" jdbcType="BIGINT" />
+    <result column="m_id" property="mId" jdbcType="INTEGER" />
+    <result column="call_number" property="callNumber" jdbcType="BIGINT" />
+    <result column="call_mission" property="callMission" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    running_id, m_id, call_number, call_mission
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from call_mission
+    where running_id = #{runningId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from call_mission
+    where running_id = #{runningId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.dombro.cloudCall.entity.CallMission" >
+    insert into call_mission (running_id, m_id, call_number, 
+      call_mission)
+    values (#{runningId,jdbcType=BIGINT}, #{mId,jdbcType=INTEGER}, #{callNumber,jdbcType=BIGINT}, 
+      #{callMission,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.dombro.cloudCall.entity.CallMission" >
+    insert into call_mission
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="runningId != null" >
+        running_id,
+      </if>
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="callNumber != null" >
+        call_number,
+      </if>
+      <if test="callMission != null" >
+        call_mission,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="runningId != null" >
+        #{runningId,jdbcType=BIGINT},
+      </if>
+      <if test="mId != null" >
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="callNumber != null" >
+        #{callNumber,jdbcType=BIGINT},
+      </if>
+      <if test="callMission != null" >
+        #{callMission,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.dombro.cloudCall.entity.CallMission" >
+    update call_mission
+    <set >
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="callNumber != null" >
+        call_number = #{callNumber,jdbcType=BIGINT},
+      </if>
+      <if test="callMission != null" >
+        call_mission = #{callMission,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where running_id = #{runningId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.dombro.cloudCall.entity.CallMission" >
+    update call_mission
+    set m_id = #{mId,jdbcType=INTEGER},
+      call_number = #{callNumber,jdbcType=BIGINT},
+      call_mission = #{callMission,jdbcType=VARCHAR}
+    where running_id = #{runningId,jdbcType=BIGINT}
+  </update>
+</mapper>
