@@ -35,13 +35,17 @@ public class EnterpriseCustomerMapperImpl implements EnterpriseCustomerMapper{
         try {
 
         }finally {
-            session.close();
         }
         return null;
     }
 
-    public void deleteByPrimaryKey(Integer ecId) {
+    public void deleteByPrimaryKey(Integer ecId) throws IOException {
+        SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
 
+        }finally {
+        }
     }
 
     public void insert(EnterpriseCustomer enterpriseCustomer) {
