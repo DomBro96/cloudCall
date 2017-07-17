@@ -9,6 +9,12 @@ import cn.dombro.cloudCall.entity.SystemAdministrator;
  * CreateTime: 12:34
  */
 public class SystemAdministratorMapperImpl implements SystemAdministratorMapper{
+
+    private static SystemAdministratorMapper administratorMapper = null;
+    public static SystemAdministratorMapper getAdministratorMapper(){
+        administratorMapper = new SystemAdministratorMapperImpl();
+        return  administratorMapper;
+    }
     @Override
     public SystemAdministrator selectByPrimaryKey(Integer saId) {
         return null;

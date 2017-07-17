@@ -2,6 +2,7 @@ package cn.dombro.cloudCall.dao.info.Impl;
 
 import cn.dombro.cloudCall.dao.info.CustomerServiceMapper;
 import cn.dombro.cloudCall.entity.CustomerService;
+import cn.dombro.cloudCall.utils.MySqlSessionFactory;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -23,14 +24,9 @@ public class CustomerServiceMapperImpl implements CustomerServiceMapper {
         return serviceMapper;
     }
 
-    public SqlSessionFactory getSqlSessionFactory() throws IOException {
-        String resource = "mybatis-config.xml";
-        InputStream inputStream = Resources.getResourceAsStream(resource);
-        return new SqlSessionFactoryBuilder().build(inputStream);
-    }
 
     public CustomerService selectByPrimaryKey(Integer csId) throws IOException {
-        SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try {
             CustomerServiceMapper mapper = session.getMapper(CustomerServiceMapper.class);
@@ -41,7 +37,7 @@ public class CustomerServiceMapperImpl implements CustomerServiceMapper {
     }
 
     public void deleteByPrimaryKey(Integer csId) throws IOException {
-        SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try {
             CustomerServiceMapper mapper = session.getMapper(CustomerServiceMapper.class);
@@ -53,7 +49,7 @@ public class CustomerServiceMapperImpl implements CustomerServiceMapper {
     }
 
     public void insert(CustomerService customerService) throws IOException {
-        SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try {
             CustomerServiceMapper mapper = session.getMapper(CustomerServiceMapper.class);
@@ -65,7 +61,7 @@ public class CustomerServiceMapperImpl implements CustomerServiceMapper {
     }
 
     public void insertSelective(CustomerService customerService) throws IOException {
-        SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try {
             CustomerServiceMapper mapper = session.getMapper(CustomerServiceMapper.class);
@@ -77,7 +73,7 @@ public class CustomerServiceMapperImpl implements CustomerServiceMapper {
     }
 
     public void updateByPrimaryKeySelective(CustomerService customerService) throws IOException {
-        SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try {
             CustomerServiceMapper mapper = session.getMapper(CustomerServiceMapper.class);
@@ -89,7 +85,7 @@ public class CustomerServiceMapperImpl implements CustomerServiceMapper {
     }
 
     public void updateByPrimaryKey(CustomerService customerService) throws IOException {
-        SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try {
             CustomerServiceMapper mapper = session.getMapper(CustomerServiceMapper.class);

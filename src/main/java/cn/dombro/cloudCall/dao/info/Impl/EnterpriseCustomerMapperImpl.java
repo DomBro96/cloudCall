@@ -2,6 +2,7 @@ package cn.dombro.cloudCall.dao.info.Impl;
 
 import cn.dombro.cloudCall.dao.info.EnterpriseCustomerMapper;
 import cn.dombro.cloudCall.entity.EnterpriseCustomer;
+import cn.dombro.cloudCall.utils.MySqlSessionFactory;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -23,46 +24,74 @@ public class EnterpriseCustomerMapperImpl implements EnterpriseCustomerMapper{
         return customerMapper;
     }
 
-    public SqlSessionFactory getSqlSessionFactory() throws IOException {
-        String resource = "mybatis-config.xml";
-        InputStream inputStream = Resources.getResourceAsStream(resource);
-        return new SqlSessionFactoryBuilder().build(inputStream);
-    }
-
     public EnterpriseCustomer selectByPrimaryKey(Integer ecId) throws IOException {
-        SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try {
-
+            EnterpriseCustomerMapper mapper = session.getMapper(EnterpriseCustomerMapper.class);
+            return mapper.selectByPrimaryKey(ecId);
         }finally {
             session.close();
         }
-        return null;
     }
 
     public void deleteByPrimaryKey(Integer ecId) throws IOException {
-        SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try {
-
+            EnterpriseCustomerMapper mapper = session.getMapper(EnterpriseCustomerMapper.class);
+            mapper.deleteByPrimaryKey(ecId);
+            session.commit();
         }finally {
             session.close();
         }
     }
 
-    public void insert(EnterpriseCustomer enterpriseCustomer) {
-
+    public void insert(EnterpriseCustomer enterpriseCustomer) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            EnterpriseCustomerMapper mapper = session.getMapper(EnterpriseCustomerMapper.class);
+            mapper.insert(enterpriseCustomer);
+            session.commit();
+        } finally {
+            session.close();
+        }
     }
 
-    public void insertSelective(EnterpriseCustomer enterpriseCustomer) {
-
+    public void insertSelective(EnterpriseCustomer enterpriseCustomer) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            EnterpriseCustomerMapper mapper = session.getMapper(EnterpriseCustomerMapper.class);
+            mapper.insertSelective(enterpriseCustomer);
+            session.commit();
+        } finally {
+            session.close();
+        }
     }
 
-    public void updateByPrimaryKeySelective(Integer ecId) {
-
+    public void updateByPrimaryKeySelective(Integer ecId) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            EnterpriseCustomerMapper mapper = session.getMapper(EnterpriseCustomerMapper.class);
+            mapper.updateByPrimaryKeySelective(ecId);
+            session.commit();
+        } finally {
+            session.close();
+        }
     }
 
-    public void updateByPrimaryKey(Integer ecId) {
-
+    public void updateByPrimaryKey(Integer ecId) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            EnterpriseCustomerMapper mapper = session.getMapper(EnterpriseCustomerMapper.class);
+            mapper.updateByPrimaryKey(ecId);
+            session.commit();
+        } finally {
+            session.close();
+        }
     }
 }
