@@ -46,6 +46,7 @@ public class EnterpriseCustomerMapperImpl implements EnterpriseCustomerMapper{
         try {
 
         }finally {
+            session.close();;
         }
     }
 
