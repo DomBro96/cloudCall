@@ -2,11 +2,8 @@ package cn.dombro.cloudCall.dao.info;
 
 import cn.dombro.cloudCall.entity.CustomerService;
 
-<<<<<<< HEAD
 import java.io.IOException;
 
-=======
->>>>>>> 623a63babb5d940ee9425adac86e7094fb497b2f
 /**
  * Author Caole
  * CreateDate: 2017/7/16
@@ -14,7 +11,6 @@ import java.io.IOException;
  */
 public interface CustomerServiceMapper {
 
-<<<<<<< HEAD
     public CustomerService selectByPrimaryKey(Integer csId) throws IOException;
 
     public void deleteByPrimaryKey(Integer csId) throws IOException;
@@ -26,17 +22,5 @@ public interface CustomerServiceMapper {
     public void updateByPrimaryKeySelective(CustomerService customerService) throws IOException;
 
     public void updateByPrimaryKey(CustomerService customerService) throws IOException;
-=======
-    public CustomerService selectByPrimaryKey(Integer csId);
 
-    public void deleteByPrimaryKey(Integer csId);
-
-    public void insert(CustomerService customerService);
-
-    public void insertSelective(CustomerService customerService);
-
-    public void updateByPrimaryKeySelective(CustomerService customerService);
-
-    public void updateByPrimaryKey(CustomerService customerService);
->>>>>>> 623a63babb5d940ee9425adac86e7094fb497b2f
 }
