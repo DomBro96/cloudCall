@@ -32,6 +32,11 @@ public class EnterpriseCustomerMapperImpl implements EnterpriseCustomerMapper{
     public EnterpriseCustomer selectByPrimaryKey(Integer ecId) throws IOException {
         SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
+        try {
+
+        }finally {
+            session.close();
+        }
         return null;
     }
 

@@ -18,7 +18,7 @@ public interface EnterpriseCustomerMapper {
 <<<<<<< HEAD
     public EnterpriseCustomer selectByPrimaryKey(Integer ecId) throws IOException;
 =======
-    public EnterpriseCustomer selectByPrimaryKey(Integer ecId);
+    public EnterpriseCustomer selectByPrimaryKey(Integer ecId) throws IOException;
 >>>>>>> 623a63babb5d940ee9425adac86e7094fb497b2f
 
     public void deleteByPrimaryKey(Integer ecId);
