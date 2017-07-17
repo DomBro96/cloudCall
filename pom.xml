@@ -30,16 +30,10 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-<<<<<<< HEAD
-
-=======
->>>>>>> 623a63babb5d940ee9425adac86e7094fb497b2f
         </plugins>
     </build>
 
     <dependencies>
-<<<<<<< HEAD
-=======
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
@@ -59,7 +53,6 @@
             <artifactId>poi-ooxml-schemas</artifactId>
             <version>3.16</version>
         </dependency>
->>>>>>> 623a63babb5d940ee9425adac86e7094fb497b2f
         <!-- https://mvnrepository.com/artifact/com.jfinal/jfinal -->
         <dependency>
             <groupId>com.jfinal</groupId>
