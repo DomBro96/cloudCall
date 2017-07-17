@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<properties resource="dbconfig.properties"/>
+
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+		<!--显示的指定每个我们需要更改的配置的值，即使他是默认的。防止版本更新带来的问题-->
+		<setting name="lazyLoadingEnabled" value="true"/>
+		<setting name="aggressiveLazyLoading" value="false"/>
+	</settings>
+
+	<typeAliases>
+		<package name="cn.dombro.cloudCall.entity"/>
+		<!-- 3、批量起别名的情况下，使用@Alias注解为某个类型指定新的别名 -->
+	</typeAliases>
+
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${jdbc.driver}" />
+				<property name="url" value="${jdbc.url}" />
+				<property name="username" value="${jdbc.username}" />
+				<property name="password" value="${jdbc.password}" />
+			</dataSource>
+		</environment>
+	</environments>
+
+	<!-- 将我们写好的sql映射文件（EmployeeMapper.xml）一定要注册到全局配置文件（mybatis-config.xml）中 -->
+	<mappers>
+        <mapper resource="mapper/CallGradeMapper.xml"/>
+        <mapper resource="mapper/CallMissionMapper.xml"/>
+        <mapper resource="mapper/CallResultMapper.xml"/>
+        <mapper resource="mapper/CustomerServiceMapper.xml"/>
+        <mapper resource="mapper/EnterpriseCustomerMapper.xml"/>
+        <mapper resource="mapper/MissionInfoMapper.xml"/>
+        <mapper resource="mapper/SiteNumberMapper.xml"/>
+        <mapper resource="mapper/SystemAdministratorMapper.xml"/>
+        <mapper resource="mapper/UnauditMissionInfoMapper.xml"/>
+	</mappers>
+</configuration>

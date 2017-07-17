@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.dombro.cloudCall.dao.cloud.MissionInfoMapper" >
+  <resultMap id="BaseResultMap" type="cn.dombro.cloudCall.entity.MissionInfo" >
+    <id column="m_id" property="mId" jdbcType="INTEGER" />
+    <result column="ec_id" property="ecId" jdbcType="INTEGER" />
+    <result column="mission_name" property="missionName" jdbcType="VARCHAR" />
+    <result column="mission_classify" property="missionClassify" jdbcType="VARCHAR" />
+    <result column="issue_date" property="issueDate" jdbcType="DATE" />
+    <result column="end_date" property="endDate" jdbcType="DATE" />
+    <result column="finish_date" property="finishDate" jdbcType="DATE" />
+    <result column="main_info" property="mainInfo" jdbcType="VARCHAR" />
+    <result column="prepay" property="prepay" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="accept_status" property="acceptStatus" jdbcType="INTEGER" />
+    <result column="cs_id" property="csId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    m_id, ec_id, mission_name, mission_classify, issue_date, end_date, finish_date, main_info, 
+    prepay, username, password, accept_status, cs_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from mission_info
+    where m_id = #{mId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from mission_info
+    where m_id = #{mId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.dombro.cloudCall.entity.MissionInfo" >
+    insert into mission_info (m_id, ec_id, mission_name, 
+      mission_classify, issue_date, end_date, 
+      finish_date, main_info, prepay, 
+      username, password, accept_status, 
+      cs_id)
+    values (#{mId,jdbcType=INTEGER}, #{ecId,jdbcType=INTEGER}, #{missionName,jdbcType=VARCHAR}, 
+      #{missionClassify,jdbcType=VARCHAR}, #{issueDate,jdbcType=DATE}, #{endDate,jdbcType=DATE}, 
+      #{finishDate,jdbcType=DATE}, #{mainInfo,jdbcType=VARCHAR}, #{prepay,jdbcType=INTEGER}, 
+      #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{acceptStatus,jdbcType=INTEGER}, 
+      #{csId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.dombro.cloudCall.entity.MissionInfo" >
+    insert into mission_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="ecId != null" >
+        ec_id,
+      </if>
+      <if test="missionName != null" >
+        mission_name,
+      </if>
+      <if test="missionClassify != null" >
+        mission_classify,
+      </if>
+      <if test="issueDate != null" >
+        issue_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="finishDate != null" >
+        finish_date,
+      </if>
+      <if test="mainInfo != null" >
+        main_info,
+      </if>
+      <if test="prepay != null" >
+        prepay,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="acceptStatus != null" >
+        accept_status,
+      </if>
+      <if test="csId != null" >
+        cs_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mId != null" >
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="ecId != null" >
+        #{ecId,jdbcType=INTEGER},
+      </if>
+      <if test="missionName != null" >
+        #{missionName,jdbcType=VARCHAR},
+      </if>
+      <if test="missionClassify != null" >
+        #{missionClassify,jdbcType=VARCHAR},
+      </if>
+      <if test="issueDate != null" >
+        #{issueDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=DATE},
+      </if>
+      <if test="finishDate != null" >
+        #{finishDate,jdbcType=DATE},
+      </if>
+      <if test="mainInfo != null" >
+        #{mainInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="prepay != null" >
+        #{prepay,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptStatus != null" >
+        #{acceptStatus,jdbcType=INTEGER},
+      </if>
+      <if test="csId != null" >
+        #{csId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.dombro.cloudCall.entity.MissionInfo" >
+    update mission_info
+    <set >
+      <if test="ecId != null" >
+        ec_id = #{ecId,jdbcType=INTEGER},
+      </if>
+      <if test="missionName != null" >
+        mission_name = #{missionName,jdbcType=VARCHAR},
+      </if>
+      <if test="missionClassify != null" >
+        mission_classify = #{missionClassify,jdbcType=VARCHAR},
+      </if>
+      <if test="issueDate != null" >
+        issue_date = #{issueDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=DATE},
+      </if>
+      <if test="finishDate != null" >
+        finish_date = #{finishDate,jdbcType=DATE},
+      </if>
+      <if test="mainInfo != null" >
+        main_info = #{mainInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="prepay != null" >
+        prepay = #{prepay,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptStatus != null" >
+        accept_status = #{acceptStatus,jdbcType=INTEGER},
+      </if>
+      <if test="csId != null" >
+        cs_id = #{csId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where m_id = #{mId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.dombro.cloudCall.entity.MissionInfo" >
+    update mission_info
+    set ec_id = #{ecId,jdbcType=INTEGER},
+      mission_name = #{missionName,jdbcType=VARCHAR},
+      mission_classify = #{missionClassify,jdbcType=VARCHAR},
+      issue_date = #{issueDate,jdbcType=DATE},
+      end_date = #{endDate,jdbcType=DATE},
+      finish_date = #{finishDate,jdbcType=DATE},
+      main_info = #{mainInfo,jdbcType=VARCHAR},
+      prepay = #{prepay,jdbcType=INTEGER},
+      username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      accept_status = #{acceptStatus,jdbcType=INTEGER},
+      cs_id = #{csId,jdbcType=INTEGER}
+    where m_id = #{mId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.dombro.cloudCall.dao.cloud.UnauditMissionInfoMapper" >
+  <resultMap id="BaseResultMap" type="cn.dombro.cloudCall.entity.UnauditMissionInfo" >
+    <id column="m_id" property="mId" jdbcType="INTEGER" />
+    <result column="ec_id" property="ecId" jdbcType="INTEGER" />
+    <result column="mission_name" property="missionName" jdbcType="VARCHAR" />
+    <result column="mission_classify" property="missionClassify" jdbcType="VARCHAR" />
+    <result column="issue_date" property="issueDate" jdbcType="DATE" />
+    <result column="end_date" property="endDate" jdbcType="DATE" />
+    <result column="main_info" property="mainInfo" jdbcType="VARCHAR" />
+    <result column="prepay" property="prepay" jdbcType="INTEGER" />
+    <result column="audit_status" property="auditStatus" jdbcType="INTEGER" />
+    <result column="audit_remark" property="auditRemark" jdbcType="VARCHAR" />
+    <result column="excel_url" property="excelUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    m_id, ec_id, mission_name, mission_classify, issue_date, end_date, main_info, prepay, 
+    audit_status, audit_remark, excel_url
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from unaudit_mission_info
+    where m_id = #{mId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from unaudit_mission_info
+    where m_id = #{mId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.dombro.cloudCall.entity.UnauditMissionInfo" >
+    insert into unaudit_mission_info (m_id, ec_id, mission_name, 
+      mission_classify, issue_date, end_date, 
+      main_info, prepay, audit_status, 
+      audit_remark, excel_url)
+    values (#{mId,jdbcType=INTEGER}, #{ecId,jdbcType=INTEGER}, #{missionName,jdbcType=VARCHAR}, 
+      #{missionClassify,jdbcType=VARCHAR}, #{issueDate,jdbcType=DATE}, #{endDate,jdbcType=DATE}, 
+      #{mainInfo,jdbcType=VARCHAR}, #{prepay,jdbcType=INTEGER}, #{auditStatus,jdbcType=INTEGER}, 
+      #{auditRemark,jdbcType=VARCHAR}, #{excelUrl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.dombro.cloudCall.entity.UnauditMissionInfo" >
+    insert into unaudit_mission_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="ecId != null" >
+        ec_id,
+      </if>
+      <if test="missionName != null" >
+        mission_name,
+      </if>
+      <if test="missionClassify != null" >
+        mission_classify,
+      </if>
+      <if test="issueDate != null" >
+        issue_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="mainInfo != null" >
+        main_info,
+      </if>
+      <if test="prepay != null" >
+        prepay,
+      </if>
+      <if test="auditStatus != null" >
+        audit_status,
+      </if>
+      <if test="auditRemark != null" >
+        audit_remark,
+      </if>
+      <if test="excelUrl != null" >
+        excel_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mId != null" >
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="ecId != null" >
+        #{ecId,jdbcType=INTEGER},
+      </if>
+      <if test="missionName != null" >
+        #{missionName,jdbcType=VARCHAR},
+      </if>
+      <if test="missionClassify != null" >
+        #{missionClassify,jdbcType=VARCHAR},
+      </if>
+      <if test="issueDate != null" >
+        #{issueDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=DATE},
+      </if>
+      <if test="mainInfo != null" >
+        #{mainInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="prepay != null" >
+        #{prepay,jdbcType=INTEGER},
+      </if>
+      <if test="auditStatus != null" >
+        #{auditStatus,jdbcType=INTEGER},
+      </if>
+      <if test="auditRemark != null" >
+        #{auditRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="excelUrl != null" >
+        #{excelUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.dombro.cloudCall.entity.UnauditMissionInfo" >
+    update unaudit_mission_info
+    <set >
+      <if test="ecId != null" >
+        ec_id = #{ecId,jdbcType=INTEGER},
+      </if>
+      <if test="missionName != null" >
+        mission_name = #{missionName,jdbcType=VARCHAR},
+      </if>
+      <if test="missionClassify != null" >
+        mission_classify = #{missionClassify,jdbcType=VARCHAR},
+      </if>
+      <if test="issueDate != null" >
+        issue_date = #{issueDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=DATE},
+      </if>
+      <if test="mainInfo != null" >
+        main_info = #{mainInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="prepay != null" >
+        prepay = #{prepay,jdbcType=INTEGER},
+      </if>
+      <if test="auditStatus != null" >
+        audit_status = #{auditStatus,jdbcType=INTEGER},
+      </if>
+      <if test="auditRemark != null" >
+        audit_remark = #{auditRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="excelUrl != null" >
+        excel_url = #{excelUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where m_id = #{mId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.dombro.cloudCall.entity.UnauditMissionInfo" >
+    update unaudit_mission_info
+    set ec_id = #{ecId,jdbcType=INTEGER},
+      mission_name = #{missionName,jdbcType=VARCHAR},
+      mission_classify = #{missionClassify,jdbcType=VARCHAR},
+      issue_date = #{issueDate,jdbcType=DATE},
+      end_date = #{endDate,jdbcType=DATE},
+      main_info = #{mainInfo,jdbcType=VARCHAR},
+      prepay = #{prepay,jdbcType=INTEGER},
+      audit_status = #{auditStatus,jdbcType=INTEGER},
+      audit_remark = #{auditRemark,jdbcType=VARCHAR},
+      excel_url = #{excelUrl,jdbcType=VARCHAR}
+    where m_id = #{mId,jdbcType=INTEGER}
+  </update>
+</mapper>
