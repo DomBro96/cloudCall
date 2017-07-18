@@ -3,13 +3,10 @@ package cn.dombro.cloudCall.dao.info.Impl;
 import cn.dombro.cloudCall.dao.info.EnterpriseCustomerMapper;
 import cn.dombro.cloudCall.entity.EnterpriseCustomer;
 import cn.dombro.cloudCall.utils.MySqlSessionFactory;
-import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 /**
  * Author Caole

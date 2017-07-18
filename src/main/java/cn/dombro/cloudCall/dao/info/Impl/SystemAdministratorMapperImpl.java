@@ -2,6 +2,11 @@ package cn.dombro.cloudCall.dao.info.Impl;
 
 import cn.dombro.cloudCall.dao.info.SystemAdministratorMapper;
 import cn.dombro.cloudCall.entity.SystemAdministrator;
+import cn.dombro.cloudCall.utils.MySqlSessionFactory;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
+import java.io.IOException;
 
 /**
  * Author Caole
@@ -16,32 +21,79 @@ public class SystemAdministratorMapperImpl implements SystemAdministratorMapper{
         return  administratorMapper;
     }
     @Override
-    public SystemAdministrator selectByPrimaryKey(Integer saId) {
-        return null;
+    public SystemAdministrator selectByPrimaryKey(Integer saId) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            SystemAdministratorMapper mapper = session.getMapper(SystemAdministratorMapper.class);
+            return mapper.selectByPrimaryKey(saId);
+        } finally {
+            session.close();
+        }
     }
 
     @Override
-    public void deleteByPrimaryKey(Integer saId) {
-
+    public void deleteByPrimaryKey(Integer saId) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            SystemAdministratorMapper mapper = session.getMapper(SystemAdministratorMapper.class);
+            mapper.deleteByPrimaryKey(saId);
+            session.commit();
+        } finally {
+            session.close();
+        }
     }
 
     @Override
-    public void insert(SystemAdministrator systemAdministrator) {
-
+    public void insert(SystemAdministrator systemAdministrator) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            SystemAdministratorMapper mapper = session.getMapper(SystemAdministratorMapper.class);
+            mapper.insert(systemAdministrator);
+            session.commit();
+        } finally {
+            session.close();
+        }
     }
 
     @Override
-    public void insertSelective(SystemAdministrator systemAdministrator) {
-
+    public void insertSelective(SystemAdministrator systemAdministrator) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            SystemAdministratorMapper mapper = session.getMapper(SystemAdministratorMapper.class);
+            mapper.insertSelective(systemAdministrator);
+            session.commit();
+        } finally {
+            session.close();
+        }
     }
 
     @Override
-    public void updateByPrimaryKeySelective(Integer saId) {
-
+    public void updateByPrimaryKeySelective(Integer saId) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            SystemAdministratorMapper mapper = session.getMapper(SystemAdministratorMapper.class);
+            mapper.updateByPrimaryKeySelective(saId);
+            session.commit();
+        } finally {
+            session.close();
+        }
     }
 
     @Override
-    public void updateByPrimaryKey(Integer saId) {
-
+    public void updateByPrimaryKey(Integer saId) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            SystemAdministratorMapper mapper = session.getMapper(SystemAdministratorMapper.class);
+            mapper.updateByPrimaryKey(saId);
+            session.commit();
+        } finally {
+            session.close();
+        }
     }
 }
