@@ -45,31 +45,34 @@
             enableCountByExample、enableSelectByExample、enableDeleteByExample、enableUpdateByExample、selectByExampleQueryId：
             去除自动生成的例子
         -->
-        <table schema="" tableName="call_grade" enableCountByExample="false" enableSelectByExample="false"
-               enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false" >
-        </table>
+        <!--<table schema="" tableName="call_grade" enableCountByExample="false" enableSelectByExample="false"-->
+               <!--enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false" >-->
+        <!--</table>-->
         <table schema="" tableName="call_mission" enableCountByExample="false" enableSelectByExample="false"
                enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false" >
         </table>
-        <table schema="" tableName="call_result" enableCountByExample="false" enableSelectByExample="false"
-               enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false" >
-        </table>
-        <table schema="" tableName="customer_service" enableCountByExample="false" enableSelectByExample="false"
-               enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false" >
-        </table>
-        <table schema="" tableName="enterprise_customer" enableCountByExample="false" enableSelectByExample="false"
-               enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false" >
-        </table>
-        <table schema="" tableName="mission_info" enableCountByExample="false" enableSelectByExample="false"
-               enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false" >
-        </table>
-        <table schema="" tableName="site_number" enableCountByExample="false" enableSelectByExample="false"
-               enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false" >
-        </table>
-        <table schema="" tableName="system_administrator" enableCountByExample="false" enableSelectByExample="false"
-               enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false" >
-        </table>
-        <table schema="" tableName="unaudit_mission_info" enableCountByExample="false" enableSelectByExample="false"
+        <!--<table schema="" tableName="call_result" enableCountByExample="false" enableSelectByExample="false"-->
+               <!--enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false" >-->
+        <!--</table>-->
+        <!--<table schema="" tableName="customer_service" enableCountByExample="false" enableSelectByExample="false"-->
+               <!--enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false" >-->
+        <!--</table>-->
+        <!--<table schema="" tableName="enterprise_customer" enableCountByExample="false" enableSelectByExample="false"-->
+               <!--enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false" >-->
+        <!--</table>-->
+        <!--<table schema="" tableName="mission_info" enableCountByExample="false" enableSelectByExample="false"-->
+               <!--enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false" >-->
+        <!--</table>-->
+        <!--<table schema="" tableName="site_number" enableCountByExample="false" enableSelectByExample="false"-->
+               <!--enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false" >-->
+        <!--</table>-->
+        <!--<table schema="" tableName="system_administrator" enableCountByExample="false" enableSelectByExample="false"-->
+               <!--enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false" >-->
+        <!--</table>-->
+        <!--<table schema="" tableName="unaudit_mission_info" enableCountByExample="false" enableSelectByExample="false"-->
+               <!--enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false" >-->
+        <!--</table>-->
+        <table schema="" tableName="message" enableCountByExample="false" enableSelectByExample="false"
                enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false" >
         </table>
     </context>

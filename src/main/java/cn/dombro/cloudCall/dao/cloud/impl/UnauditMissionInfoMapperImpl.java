@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Author Caole
@@ -93,6 +94,17 @@ public class UnauditMissionInfoMapperImpl implements UnauditMissionInfoMapper {
             UnauditMissionInfoMapper mapper = session.getMapper(UnauditMissionInfoMapper.class);
             mapper.updateByPrimaryKey(mId);
             session.commit();
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public List<UnauditMissionInfo> getAll() throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            return session.selectList("cn.dombro.cloudCall.dao.cloud.UnauditMissionInfoMapper.getAll");
         } finally {
             session.close();
         }

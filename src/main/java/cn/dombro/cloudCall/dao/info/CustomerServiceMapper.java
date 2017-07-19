@@ -3,6 +3,7 @@ package cn.dombro.cloudCall.dao.info;
 import cn.dombro.cloudCall.entity.CustomerService;
 
 import java.io.IOException;
+import java.util.List;
 
 
 /**
@@ -25,4 +26,5 @@ public interface CustomerServiceMapper {
 
     public void updateByPrimaryKey(CustomerService customerService) throws IOException;
 
+    public List<CustomerService> getAll() throws IOException;
 }

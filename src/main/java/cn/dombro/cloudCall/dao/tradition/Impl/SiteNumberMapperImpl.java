@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Author Caole
@@ -95,6 +96,17 @@ public class SiteNumberMapperImpl implements SiteNumberMapper{
             siteNumberMapper.updateByPrimaryKey(mId);
             session.commit();
         }finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public List<SiteNumber> getAll() throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            return session.selectList("cn.dombro.cloudCall.dao.tradition.SiteNumberMapper.getAll");
+        } finally {
             session.close();
         }
     }

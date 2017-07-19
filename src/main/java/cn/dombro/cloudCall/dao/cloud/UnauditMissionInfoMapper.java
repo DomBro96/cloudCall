@@ -1,9 +1,9 @@
 package cn.dombro.cloudCall.dao.cloud;
 
-import cn.dombro.cloudCall.entity.MissionInfo;
 import cn.dombro.cloudCall.entity.UnauditMissionInfo;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Author Caole
@@ -23,4 +23,6 @@ public interface UnauditMissionInfoMapper {
     public void updateByPrimaryKeySelective(Integer mId) throws IOException;
 
     public void updateByPrimaryKey(Integer mId) throws IOException;
+
+    public List<UnauditMissionInfo> getAll() throws IOException;
 }

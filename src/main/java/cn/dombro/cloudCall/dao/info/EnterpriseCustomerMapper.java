@@ -4,6 +4,7 @@ import cn.dombro.cloudCall.entity.CustomerService;
 import cn.dombro.cloudCall.entity.EnterpriseCustomer;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Author Caole
@@ -24,4 +25,6 @@ public interface EnterpriseCustomerMapper {
     public void updateByPrimaryKeySelective(Integer ecId) throws IOException;
 
     public void updateByPrimaryKey(Integer ecId) throws IOException;
+
+    public List<EnterpriseCustomer> getAll() throws IOException;
 }

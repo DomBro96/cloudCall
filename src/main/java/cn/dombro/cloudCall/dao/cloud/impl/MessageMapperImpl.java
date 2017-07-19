@@ -1,7 +1,8 @@
-package cn.dombro.cloudCall.dao.info.Impl;
+package cn.dombro.cloudCall.dao.cloud.impl;
 
-import cn.dombro.cloudCall.dao.info.SystemAdministratorMapper;
-import cn.dombro.cloudCall.entity.SystemAdministrator;
+import cn.dombro.cloudCall.dao.cloud.MessageMapper;
+import cn.dombro.cloudCall.dao.info.CustomerServiceMapper;
+import cn.dombro.cloudCall.entity.Message;
 import cn.dombro.cloudCall.utils.MySqlSessionFactory;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -11,35 +12,37 @@ import java.util.List;
 
 /**
  * Author Caole
- * CreateDate: 2017/7/17
- * CreateTime: 12:34
+ * CreateDate: 2017/7/19
+ * CreateTime: 12:23
  */
-public class SystemAdministratorMapperImpl implements SystemAdministratorMapper{
+public class MessageMapperImpl implements MessageMapper{
 
-    private static SystemAdministratorMapper administratorMapper = null;
-    public static SystemAdministratorMapper getAdministratorMapper(){
-        administratorMapper = new SystemAdministratorMapperImpl();
-        return  administratorMapper;
+    private static MessageMapper messageMapper = null;
+    public static MessageMapper getMessageMapper(){
+        messageMapper = new MessageMapperImpl();
+        return  messageMapper;
     }
+
     @Override
-    public SystemAdministrator selectByPrimaryKey(Integer saId) throws IOException {
+    public Message selectByPrimaryKey(Integer msg_id) throws IOException {
         SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try {
-            SystemAdministratorMapper mapper = session.getMapper(SystemAdministratorMapper.class);
-            return mapper.selectByPrimaryKey(saId);
+            MessageMapper mapper = session.getMapper(MessageMapper.class);
+            return mapper.selectByPrimaryKey(msg_id);
         } finally {
             session.close();
         }
     }
 
+
     @Override
-    public void deleteByPrimaryKey(Integer saId) throws IOException {
+    public void deleteByPrimaryKey(Integer msg_id) throws IOException {
         SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try {
-            SystemAdministratorMapper mapper = session.getMapper(SystemAdministratorMapper.class);
-            mapper.deleteByPrimaryKey(saId);
+            MessageMapper mapper = session.getMapper(MessageMapper.class);
+            mapper.deleteByPrimaryKey(msg_id);
             session.commit();
         } finally {
             session.close();
@@ -47,12 +50,12 @@ public class SystemAdministratorMapperImpl implements SystemAdministratorMapper{
     }
 
     @Override
-    public void insert(SystemAdministrator systemAdministrator) throws IOException {
+    public void insert(Message message) throws IOException {
         SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try {
-            SystemAdministratorMapper mapper = session.getMapper(SystemAdministratorMapper.class);
-            mapper.insert(systemAdministrator);
+            MessageMapper mapper = session.getMapper(MessageMapper.class);
+            mapper.insert(message);
             session.commit();
         } finally {
             session.close();
@@ -60,12 +63,12 @@ public class SystemAdministratorMapperImpl implements SystemAdministratorMapper{
     }
 
     @Override
-    public void insertSelective(SystemAdministrator systemAdministrator) throws IOException {
+    public void insertSelective(Message message) throws IOException {
         SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try {
-            SystemAdministratorMapper mapper = session.getMapper(SystemAdministratorMapper.class);
-            mapper.insertSelective(systemAdministrator);
+            MessageMapper mapper = session.getMapper(MessageMapper.class);
+            mapper.insertSelective(message);
             session.commit();
         } finally {
             session.close();
@@ -73,12 +76,12 @@ public class SystemAdministratorMapperImpl implements SystemAdministratorMapper{
     }
 
     @Override
-    public void updateByPrimaryKeySelective(Integer saId) throws IOException {
+    public void updateByPrimaryKeySelective(Integer msg_id) throws IOException {
         SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try {
-            SystemAdministratorMapper mapper = session.getMapper(SystemAdministratorMapper.class);
-            mapper.updateByPrimaryKeySelective(saId);
+            MessageMapper mapper = session.getMapper(MessageMapper.class);
+            mapper.updateByPrimaryKeySelective(msg_id);
             session.commit();
         } finally {
             session.close();
@@ -86,12 +89,12 @@ public class SystemAdministratorMapperImpl implements SystemAdministratorMapper{
     }
 
     @Override
-    public void updateByPrimaryKey(Integer saId) throws IOException {
+    public void updateByPrimaryKey(Integer msg_id) throws IOException {
         SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try {
-            SystemAdministratorMapper mapper = session.getMapper(SystemAdministratorMapper.class);
-            mapper.updateByPrimaryKey(saId);
+            MessageMapper mapper = session.getMapper(MessageMapper.class);
+            mapper.updateByPrimaryKey(msg_id);
             session.commit();
         } finally {
             session.close();
@@ -99,11 +102,11 @@ public class SystemAdministratorMapperImpl implements SystemAdministratorMapper{
     }
 
     @Override
-    public List<SystemAdministrator> getAll() throws IOException {
+    public List<Message> getAll() throws IOException {
         SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try {
-            return session.selectList("cn.dombro.cloudCall.dao.info.SystemAdministratorMapper.getAll");
+            return session.selectList("cn.dombro.cloudCall.dao.cloud.MessageMapper.getAll");
         } finally {
             session.close();
         }

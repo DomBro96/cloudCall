@@ -1,7 +1,7 @@
 package cn.dombro.cloudCall.dao.info.Impl;
 
 
-import cn.dombro.cloudCall.dao.info.CustomerServiceMapper;
+import cn.dombro.cloudCall.dao.cloud.impl.CallGradeMapperImpl;
 import cn.dombro.cloudCall.entity.CustomerService;
 import org.junit.Test;
 

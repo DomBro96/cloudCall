@@ -39,5 +39,6 @@
         <mapper resource="mapper/SiteNumberMapper.xml"/>
         <mapper resource="mapper/SystemAdministratorMapper.xml"/>
         <mapper resource="mapper/UnauditMissionInfoMapper.xml"/>
+		<mapper resource="mapper/MessageMapper.xml"/>
 	</mappers>
 </configuration>

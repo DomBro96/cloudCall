@@ -4,6 +4,7 @@ import cn.dombro.cloudCall.entity.CallMission;
 import cn.dombro.cloudCall.entity.MissionInfo;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Author Caole
@@ -23,4 +24,6 @@ public interface MissionInfoMapper {
     public void updateByPrimaryKeySelective(Integer mId) throws IOException;
 
     public void updateByPrimaryKey(Integer mId) throws IOException;
+
+    public List<MissionInfo> getAll() throws IOException;
 }

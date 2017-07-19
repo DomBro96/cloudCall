@@ -70,4 +70,31 @@ public class CallGrade {
     public void setGrade(Integer grade) {
         this.grade = grade;
     }
+
+    public CallGrade() {
+    }
+
+    @Override
+    public String toString() {
+        return "CallGrade{" +
+                "mId=" + mId +
+                ", csId=" + csId +
+                ", pGrade=" + pGrade +
+                ", pRemark='" + pRemark + '\'' +
+                ", cGrade=" + cGrade +
+                ", cRemark='" + cRemark + '\'' +
+                ", grade=" + grade +
+                '}';
+    }
+
+
+    public CallGrade(Integer mId, Integer csId, Integer pGrade, String pRemark, Integer cGrade, String cRemark, Integer grade) {
+        this.mId = mId;
+        this.csId = csId;
+        this.pGrade = pGrade;
+        this.pRemark = pRemark;
+        this.cGrade = cGrade;
+        this.cRemark = cRemark;
+        this.grade = grade;
+    }
 }

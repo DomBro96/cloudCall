@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Author Caole
@@ -87,6 +88,17 @@ public class EnterpriseCustomerMapperImpl implements EnterpriseCustomerMapper{
             EnterpriseCustomerMapper mapper = session.getMapper(EnterpriseCustomerMapper.class);
             mapper.updateByPrimaryKey(ecId);
             session.commit();
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public List<EnterpriseCustomer> getAll() throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            return session.selectList("cn.dombro.cloudCall.dao.info.EnterpriseCustomerMapper.getAll");
         } finally {
             session.close();
         }

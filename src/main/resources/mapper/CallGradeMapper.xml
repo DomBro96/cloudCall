@@ -13,6 +13,9 @@
   <sql id="Base_Column_List" >
     m_id, cs_id, p_grade, p_remark, c_grade, c_remark, grade
   </sql>
+  <select id="getAll" resultType="cn.dombro.cloudCall.entity.CallGrade">
+  SELECT * FROM call_grade
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

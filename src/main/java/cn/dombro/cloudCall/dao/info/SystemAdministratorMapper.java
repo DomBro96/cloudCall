@@ -4,6 +4,7 @@ import cn.dombro.cloudCall.entity.CustomerService;
 import cn.dombro.cloudCall.entity.SystemAdministrator;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Author Caole
@@ -23,4 +24,6 @@ public interface SystemAdministratorMapper {
     public void updateByPrimaryKeySelective(Integer saId) throws IOException;
 
     public void updateByPrimaryKey(Integer saId) throws IOException;
+
+    public List<SystemAdministrator> getAll() throws IOException;
 }

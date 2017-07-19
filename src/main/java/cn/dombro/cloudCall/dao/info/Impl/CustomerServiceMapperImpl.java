@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 /**
  * Author Caole
@@ -23,7 +24,6 @@ public class CustomerServiceMapperImpl implements CustomerServiceMapper {
         serviceMapper = new CustomerServiceMapperImpl();
         return serviceMapper;
     }
-
 
     public CustomerService selectByPrimaryKey(Integer csId) throws IOException {
         SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
@@ -91,6 +91,17 @@ public class CustomerServiceMapperImpl implements CustomerServiceMapper {
             CustomerServiceMapper mapper = session.getMapper(CustomerServiceMapper.class);
             mapper.updateByPrimaryKey(customerService);
             session.commit();
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public List<CustomerService> getAll() throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            return session.selectList("cn.dombro.cloudCall.dao.info.CustomerServiceMapper.getAll");
         } finally {
             session.close();
         }

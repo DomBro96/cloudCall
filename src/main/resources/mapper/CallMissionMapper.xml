@@ -5,10 +5,11 @@
     <id column="running_id" property="runningId" jdbcType="BIGINT" />
     <result column="m_id" property="mId" jdbcType="INTEGER" />
     <result column="call_number" property="callNumber" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="call_mission" property="callMission" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    running_id, m_id, call_number, call_mission
+    running_id, m_id, call_number, name, call_mission
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -22,9 +23,9 @@
   </delete>
   <insert id="insert" parameterType="cn.dombro.cloudCall.entity.CallMission" >
     insert into call_mission (running_id, m_id, call_number, 
-      call_mission)
+      name, call_mission)
     values (#{runningId,jdbcType=BIGINT}, #{mId,jdbcType=INTEGER}, #{callNumber,jdbcType=BIGINT}, 
-      #{callMission,jdbcType=VARCHAR})
+      #{name,jdbcType=VARCHAR}, #{callMission,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.dombro.cloudCall.entity.CallMission" >
     insert into call_mission
@@ -37,6 +38,9 @@
       </if>
       <if test="callNumber != null" >
         call_number,
+      </if>
+      <if test="name != null" >
+        name,
       </if>
       <if test="callMission != null" >
         call_mission,
@@ -52,6 +56,9 @@
       <if test="callNumber != null" >
         #{callNumber,jdbcType=BIGINT},
       </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
       <if test="callMission != null" >
         #{callMission,jdbcType=VARCHAR},
       </if>
@@ -66,6 +73,9 @@
       <if test="callNumber != null" >
         call_number = #{callNumber,jdbcType=BIGINT},
       </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
       <if test="callMission != null" >
         call_mission = #{callMission,jdbcType=VARCHAR},
       </if>
@@ -76,6 +86,7 @@
     update call_mission
     set m_id = #{mId,jdbcType=INTEGER},
       call_number = #{callNumber,jdbcType=BIGINT},
+      name = #{name,jdbcType=VARCHAR},
       call_mission = #{callMission,jdbcType=VARCHAR}
     where running_id = #{runningId,jdbcType=BIGINT}
   </update>

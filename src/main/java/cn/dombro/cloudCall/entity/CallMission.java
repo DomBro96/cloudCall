@@ -7,6 +7,8 @@ public class CallMission {
 
     private Long callNumber;
 
+    private String name;
+
     private String callMission;
 
     public Long getRunningId() {
@@ -31,6 +33,14 @@ public class CallMission {
 
     public void setCallNumber(Long callNumber) {
         this.callNumber = callNumber;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getCallMission() {

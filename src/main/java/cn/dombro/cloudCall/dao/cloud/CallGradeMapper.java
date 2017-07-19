@@ -1,10 +1,10 @@
 package cn.dombro.cloudCall.dao.cloud;
 
 import cn.dombro.cloudCall.entity.CallGrade;
-import cn.dombro.cloudCall.entity.CustomerService;
 
 
 import java.io.IOException;
+import java.util.List;
 
 
 /**
@@ -25,4 +25,6 @@ public interface CallGradeMapper {
     public void updateByPrimaryKeySelective(Integer mId) throws IOException;
 
     public void updateByPrimaryKey(Integer mId) throws IOException;
+
+    public List<CallGrade> getAll() throws IOException;
 }

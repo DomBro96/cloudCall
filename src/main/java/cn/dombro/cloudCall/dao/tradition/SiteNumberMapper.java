@@ -4,6 +4,7 @@ import cn.dombro.cloudCall.entity.MissionInfo;
 import cn.dombro.cloudCall.entity.SiteNumber;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Author Caole
@@ -23,4 +24,6 @@ public interface SiteNumberMapper {
     public void updateByPrimaryKeySelective(Integer mId) throws IOException;
 
     public void updateByPrimaryKey(Integer mId) throws IOException;
+
+    public List<SiteNumber> getAll() throws IOException;
 }

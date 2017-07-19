@@ -4,6 +4,7 @@ import cn.dombro.cloudCall.entity.CallMission;
 import cn.dombro.cloudCall.entity.CustomerService;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Author Caole
@@ -23,4 +24,6 @@ public interface CallMissionMapper {
     public void updateByPrimaryKeySelective(Long runningId) throws IOException;
 
     public void updateByPrimaryKey(Long runningId) throws IOException;
+
+    public List<CallMission> getAll() throws IOException;
 }

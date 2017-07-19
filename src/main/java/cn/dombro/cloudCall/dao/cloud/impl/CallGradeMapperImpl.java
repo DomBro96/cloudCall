@@ -1,17 +1,14 @@
 package cn.dombro.cloudCall.dao.cloud.impl;
 
 import cn.dombro.cloudCall.dao.cloud.CallGradeMapper;
-import cn.dombro.cloudCall.dao.info.CustomerServiceMapper;
 import cn.dombro.cloudCall.entity.CallGrade;
-import cn.dombro.cloudCall.entity.CustomerService;
 import cn.dombro.cloudCall.utils.MySqlSessionFactory;
-import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 /**
  * Author Caole
@@ -96,4 +93,16 @@ public class CallGradeMapperImpl implements CallGradeMapper {
             session.close();
         }
     }
+
+    @Override
+    public List<CallGrade> getAll() throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            return session.selectList("cn.dombro.cloudCall.dao.cloud.CallGradeMapper.getAll");
+        } finally {
+            session.close();
+        }
+    }
+
 }
