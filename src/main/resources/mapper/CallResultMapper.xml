@@ -10,6 +10,9 @@
   <sql id="Base_Column_List" >
     running_id, m_id, call_result, remark
   </sql>
+  <select id="getAll" resultMap="BaseResultMap">
+    SELECT * FROM call_result
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />

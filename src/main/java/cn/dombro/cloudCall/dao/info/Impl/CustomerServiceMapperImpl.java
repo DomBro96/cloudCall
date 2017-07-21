@@ -3,13 +3,10 @@ package cn.dombro.cloudCall.dao.info.Impl;
 import cn.dombro.cloudCall.dao.info.CustomerServiceMapper;
 import cn.dombro.cloudCall.entity.CustomerService;
 import cn.dombro.cloudCall.utils.MySqlSessionFactory;
-import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -24,6 +21,7 @@ public class CustomerServiceMapperImpl implements CustomerServiceMapper {
         serviceMapper = new CustomerServiceMapperImpl();
         return serviceMapper;
     }
+    public CustomerServiceMapper mapper = null;
 
     public CustomerService selectByPrimaryKey(Integer csId) throws IOException {
         SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
@@ -64,7 +62,7 @@ public class CustomerServiceMapperImpl implements CustomerServiceMapper {
         SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try {
-            CustomerServiceMapper mapper = session.getMapper(CustomerServiceMapper.class);
+            mapper = session.getMapper(CustomerServiceMapper.class);
             mapper.insertSelective(customerService);
             session.commit();
         } finally {
@@ -101,7 +99,32 @@ public class CustomerServiceMapperImpl implements CustomerServiceMapper {
         SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try {
-            return session.selectList("cn.dombro.cloudCall.dao.info.CustomerServiceMapper.getAll");
+            CustomerServiceMapper mapper = session.getMapper(CustomerServiceMapper.class);
+            return mapper.getAll();
+
+            //return session.selectList("cn.dombro.cloudCall.dao.info.CustomerServiceMapper.getAll");
+        } finally {
+            session.close();
+        }
+    }
+
+    public String selectPswByUser(String username) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            CustomerServiceMapper mapper = session.getMapper(CustomerServiceMapper.class);
+            return mapper.selectPswByUser(username);
+        } finally {
+            session.close();
+        }
+    }
+
+    public CustomerService selectByUser(String username) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            CustomerServiceMapper mapper = session.getMapper(CustomerServiceMapper.class);
+            return mapper.selectByUser(username);
         } finally {
             session.close();
         }

@@ -17,6 +17,19 @@
   <sql id="Base_Column_List" >
     cs_id, username, password, name, id_number, phone_number, email, account, balance
   </sql>
+  <select id="getAll" resultMap="BaseResultMap">
+    SELECT * FROM customer_service
+  </select>
+  <select id="selectByUser" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM customer_service
+    WHERE username = #{username,jdbcType=VARCHAR}
+  </select>
+  <select id="selectPswByUser" resultType="java.lang.String">
+    SELECT password FROM customer_service
+    WHERE username = #{username,jdbcType=VARCHAR}
+  </select>
 
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 

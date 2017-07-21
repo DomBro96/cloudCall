@@ -72,4 +72,17 @@ public class Message {
     public void setReadd(Integer readd) {
         this.readd = readd;
     }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "msgId=" + msgId +
+                ", receiverId=" + receiverId +
+                ", reGroup='" + reGroup + '\'' +
+                ", sender=" + sender +
+                ", message='" + message + '\'' +
+                ", sendDateTime=" + sendDateTime +
+                ", readd=" + readd +
+                '}';
+    }
 }

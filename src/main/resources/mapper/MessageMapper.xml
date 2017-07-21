@@ -13,6 +13,16 @@
   <sql id="Base_Column_List" >
     msg_id, receiver_id, re_group, sender, message, send_date_time, readd
   </sql>
+  <select id="getAll" resultMap="BaseResultMap">
+    SELECT * FROM message
+  </select>
+  <select id="getListByIdGroup" resultType="cn.dombro.cloudCall.entity.Message">
+    SELECT
+      <include refid="Base_Column_List"/>
+    FROM message
+    WHERE receiver_id = #{receiverId,jdbcType=INTEGER}
+    AND re_group =  #{group,jdbcType=VARCHAR}
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

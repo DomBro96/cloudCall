@@ -18,6 +18,9 @@
     m_id, ec_id, mission_name, mission_classify, issue_date, end_date, main_info, prepay, 
     audit_status, audit_remark, excel_url
   </sql>
+  <select id="getAll" resultMap="BaseResultMap">
+    SELECT * FROM unaudit_mission_info
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

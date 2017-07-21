@@ -106,9 +106,43 @@ public class MessageMapperImpl implements MessageMapper{
         SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try {
-            return session.selectList("cn.dombro.cloudCall.dao.cloud.MessageMapper.getAll");
+            MessageMapper mapper = session.getMapper(MessageMapper.class);
+            //List<Message> messages =
+            return mapper.getAll();
+
+            //return session.selectList("cn.dombro.cloudCall.dao.cloud.MessageMapper.getAll");
         } finally {
             session.close();
         }
     }
+
+    @Override
+    public List<Message> getListByIdGroup(Integer receiverId, String group) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            MessageMapper mapper = session.getMapper(MessageMapper.class);
+            //List<Message> messages =
+             return mapper.getListByIdGroup(receiverId, group);
+            //return messages;
+            //return session.selectList("cn.dombro.cloudCall.dao.cloud.MessageMapper.getListByIdGroup");
+        } finally {
+            session.close();
+        }
+    }
+
+    //@Override
+    //public void updateReadById(Integer msg_id) throws IOException {
+    //    SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+    //    SqlSession session = sqlSessionFactory.openSession();
+    //    try {
+    //        MessageMapper mapper = session.getMapper(MessageMapper.class);
+    //        mapper.updateReadById(msg_id);
+    //        session.commit();
+    //    } finally {
+    //        session.close();
+    //    }
+    //}
+
+
 }

@@ -10,6 +10,19 @@
   <sql id="Base_Column_List" >
     sa_id, username, password, phone_number
   </sql>
+  <select id="getAll" resultMap="BaseResultMap">
+    SELECT * FROM system_administrator
+  </select>
+  <select id="selectPswByUser" resultType="java.lang.String">
+    SELECT password FROM system_administrator
+    WHERE username = #{username,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByUser" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM system_administrator
+    WHERE username = #{username,jdbcType=VARCHAR}
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

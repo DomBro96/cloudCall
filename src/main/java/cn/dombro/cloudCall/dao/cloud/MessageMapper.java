@@ -2,6 +2,7 @@ package cn.dombro.cloudCall.dao.cloud;
 
 import cn.dombro.cloudCall.entity.CallMission;
 import cn.dombro.cloudCall.entity.Message;
+import org.apache.ibatis.annotations.Param;
 
 import java.io.IOException;
 import java.util.List;
@@ -25,4 +26,8 @@ public interface MessageMapper {
     public void updateByPrimaryKey(Integer msg_id) throws IOException;
 
     public List<Message> getAll() throws IOException;
+
+    public List<Message> getListByIdGroup(@Param("receiverId") Integer receiverId, @Param("group") String group) throws IOException;
+
+    //public void updateReadById(Integer msg_id) throws IOException;
 }

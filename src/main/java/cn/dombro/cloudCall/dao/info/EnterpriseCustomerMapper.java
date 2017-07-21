@@ -15,7 +15,6 @@ public interface EnterpriseCustomerMapper {
 
     public EnterpriseCustomer selectByPrimaryKey(Integer ecId) throws IOException;
 
-
     public void deleteByPrimaryKey(Integer ecId) throws IOException;
 
     public void insert(EnterpriseCustomer enterpriseCustomer) throws IOException;
@@ -27,4 +26,8 @@ public interface EnterpriseCustomerMapper {
     public void updateByPrimaryKey(Integer ecId) throws IOException;
 
     public List<EnterpriseCustomer> getAll() throws IOException;
+
+    public String selectPswByUser(String username) throws IOException;
+
+    public EnterpriseCustomer selectByUser(String username) throws IOException;
 }

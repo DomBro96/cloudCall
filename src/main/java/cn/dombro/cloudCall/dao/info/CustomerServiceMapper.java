@@ -27,4 +27,8 @@ public interface CustomerServiceMapper {
     public void updateByPrimaryKey(CustomerService customerService) throws IOException;
 
     public List<CustomerService> getAll() throws IOException;
+
+    public String selectPswByUser(String username) throws IOException;
+
+    public CustomerService selectByUser(String username) throws IOException;
 }

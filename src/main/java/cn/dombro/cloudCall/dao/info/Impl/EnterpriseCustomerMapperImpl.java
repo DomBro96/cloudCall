@@ -1,6 +1,8 @@
 package cn.dombro.cloudCall.dao.info.Impl;
 
+import cn.dombro.cloudCall.dao.info.CustomerServiceMapper;
 import cn.dombro.cloudCall.dao.info.EnterpriseCustomerMapper;
+import cn.dombro.cloudCall.entity.CustomerService;
 import cn.dombro.cloudCall.entity.EnterpriseCustomer;
 import cn.dombro.cloudCall.utils.MySqlSessionFactory;
 import org.apache.ibatis.session.SqlSession;
@@ -99,6 +101,28 @@ public class EnterpriseCustomerMapperImpl implements EnterpriseCustomerMapper{
         SqlSession session = sqlSessionFactory.openSession();
         try {
             return session.selectList("cn.dombro.cloudCall.dao.info.EnterpriseCustomerMapper.getAll");
+        } finally {
+            session.close();
+        }
+    }
+
+    public String selectPswByUser(String username) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            EnterpriseCustomerMapper mapper = session.getMapper(EnterpriseCustomerMapper.class);
+            return mapper.selectPswByUser(username);
+        } finally {
+            session.close();
+        }
+    }
+
+    public EnterpriseCustomer selectByUser(String username) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            EnterpriseCustomerMapper mapper = session.getMapper(EnterpriseCustomerMapper.class);
+            return mapper.selectByUser(username);
         } finally {
             session.close();
         }

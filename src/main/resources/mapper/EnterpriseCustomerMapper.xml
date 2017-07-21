@@ -14,6 +14,19 @@
   <sql id="Base_Column_List" >
     ec_id, username, password, company_name, license, phone_number, email, account
   </sql>
+  <select id="getAll" resultMap="BaseResultMap">
+    SELECT * FROM enterprise_customer
+  </select>
+  <select id="selectPswByUser" resultType="java.lang.String">
+    SELECT password FROM enterprise_customer
+    WHERE username = #{username,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByUser" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM enterprise_customer
+    WHERE username = #{username,jdbcType=VARCHAR}
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

@@ -16,6 +16,14 @@
 		<!-- 3、批量起别名的情况下，使用@Alias注解为某个类型指定新的别名 -->
 	</typeAliases>
 
+	<plugins>
+		<!-- com.github.pagehelper为PageHelper类所在包名 -->
+		<plugin interceptor="cn.dombro.cloudCall.utils.PageHelper">
+			<!-- 使用下面的方式配置参数，后面会有所有的参数介绍 -->
+			<property name="dialect" value="mysql"/>
+		</plugin>
+	</plugins>
+
 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC" />

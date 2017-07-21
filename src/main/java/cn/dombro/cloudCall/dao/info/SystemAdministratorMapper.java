@@ -26,4 +26,8 @@ public interface SystemAdministratorMapper {
     public void updateByPrimaryKey(Integer saId) throws IOException;
 
     public List<SystemAdministrator> getAll() throws IOException;
+
+    public String selectPswByUser(String username) throws IOException;
+
+    public SystemAdministrator selectByUser(String username) throws IOException;
 }
