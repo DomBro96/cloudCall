@@ -1,6 +1,9 @@
 package cn.dombro.cloudCall.common;
 
+import cn.dombro.cloudCall.route.LoginRoute;
+import cn.dombro.cloudCall.route.MessageRoute;
 import com.jfinal.config.*;
+import com.jfinal.core.JFinal;
 import com.jfinal.template.Engine;
 
 /**
@@ -12,7 +15,8 @@ public class MyConfig extends JFinalConfig {
     }
 
     public void configRoute(Routes routes) {
-
+        routes.add(new MessageRoute());
+        routes.add(new LoginRoute());
     }
 
     public void configEngine(Engine engine) {
@@ -29,5 +33,9 @@ public class MyConfig extends JFinalConfig {
 
     public void configHandler(Handlers handlers) {
 
+    }
+
+    public static void main(String[] args) {
+        JFinal.start("src/main/webapp",8080,"/");
     }
 }
