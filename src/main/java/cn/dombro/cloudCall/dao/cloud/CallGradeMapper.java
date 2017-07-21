@@ -20,7 +20,9 @@ public interface CallGradeMapper {
 
     public void insert(CallGrade callGrade) throws IOException;
 
+
     public void insertSelective(CallGrade callGrade) throws IOException;
+
 
     public void updateByPrimaryKeySelective(Integer mId) throws IOException;
 
