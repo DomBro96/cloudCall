@@ -17,11 +17,11 @@ public interface EnterpriseCustomerMapper {
 
     public void deleteByPrimaryKey(Integer ecId) throws IOException;
 
-    public void insert(EnterpriseCustomer enterpriseCustomer);
+    public void insert(EnterpriseCustomer enterpriseCustomer) throws IOException;
 
-    public void insertSelective(EnterpriseCustomer enterpriseCustomer);
+    public void insertSelective(EnterpriseCustomer enterpriseCustomer) throws IOException;
 
-    public void updateByPrimaryKeySelective(Integer ecId);
+    public void updateByPrimaryKeySelective(Integer ecId) throws IOException;
 
-    public void updateByPrimaryKey(Integer ecId);
+    public void updateByPrimaryKey(Integer ecId) throws IOException;
 }

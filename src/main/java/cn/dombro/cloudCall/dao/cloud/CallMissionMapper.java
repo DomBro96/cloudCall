@@ -3,6 +3,8 @@ package cn.dombro.cloudCall.dao.cloud;
 import cn.dombro.cloudCall.entity.CallMission;
 import cn.dombro.cloudCall.entity.CustomerService;
 
+import java.io.IOException;
+
 /**
  * Author Caole
  * CreateDate: 2017/7/16
@@ -10,15 +12,15 @@ import cn.dombro.cloudCall.entity.CustomerService;
  */
 public interface CallMissionMapper {
 
-    public CallMission selectByPrimaryKey(Long runningId);
+    public CallMission selectByPrimaryKey(Long runningId) throws IOException;
 
-    public void deleteByPrimaryKey(Long runningId);
+    public void deleteByPrimaryKey(Long runningId) throws IOException;
 
-    public void insert(CallMission callMission);
+    public void insert(CallMission callMission) throws IOException;
 
-    public void insertSelective(CallMission callMission);
+    public void insertSelective(CallMission callMission) throws IOException;
 
-    public void updateByPrimaryKeySelective(Long runningId);
+    public void updateByPrimaryKeySelective(Long runningId) throws IOException;
 
-    public void updateByPrimaryKey(Long runningId);
+    public void updateByPrimaryKey(Long runningId) throws IOException;
 }

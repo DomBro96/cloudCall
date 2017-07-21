@@ -1,7 +1,13 @@
 package cn.dombro.cloudCall.dao.tradition.Impl;
 
+import cn.dombro.cloudCall.dao.cloud.MissionInfoMapper;
 import cn.dombro.cloudCall.dao.tradition.SiteNumberMapper;
 import cn.dombro.cloudCall.entity.SiteNumber;
+import cn.dombro.cloudCall.utils.MySqlSessionFactory;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
+import java.io.IOException;
 
 /**
  * Author Caole
@@ -9,33 +15,87 @@ import cn.dombro.cloudCall.entity.SiteNumber;
  * CreateTime: 12:37
  */
 public class SiteNumberMapperImpl implements SiteNumberMapper{
-    @Override
-    public SiteNumber selectByPrimaryKey(Integer mId) {
-        return null;
+
+    private static SiteNumberMapper numberMapper = null;
+    public static SiteNumberMapper getNumberMapper(){
+        numberMapper = new SiteNumberMapperImpl();
+        return numberMapper;
     }
 
     @Override
-    public void deleteByPrimaryKey(Integer mId) {
-
+    public SiteNumber selectByPrimaryKey(Integer mId) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            SiteNumberMapper siteNumberMapper = session.getMapper(SiteNumberMapper.class);
+            return siteNumberMapper.selectByPrimaryKey(mId);
+        }finally {
+            session.close();
+        }
     }
 
     @Override
-    public void insert(SiteNumber siteNumber) {
-
+    public void deleteByPrimaryKey(Integer mId) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            SiteNumberMapper siteNumberMapper = session.getMapper(SiteNumberMapper.class);
+            siteNumberMapper.deleteByPrimaryKey(mId);
+            session.commit();
+        }finally {
+            session.close();
+        }
     }
 
     @Override
-    public void insertSelective(SiteNumber siteNumber) {
-
+    public void insert(SiteNumber siteNumber) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            SiteNumberMapper siteNumberMapper = session.getMapper(SiteNumberMapper.class);
+            siteNumberMapper.insert(siteNumber);
+            session.commit();
+        }finally {
+            session.close();
+        }
     }
 
     @Override
-    public void updateByPrimaryKeySelective(Integer mId) {
-
+    public void insertSelective(SiteNumber siteNumber) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            SiteNumberMapper siteNumberMapper = session.getMapper(SiteNumberMapper.class);
+            siteNumberMapper.insertSelective(siteNumber);
+            session.commit();
+        }finally {
+            session.close();
+        }
     }
 
     @Override
-    public void updateByPrimaryKey(Integer mId) {
+    public void updateByPrimaryKeySelective(Integer mId) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            SiteNumberMapper siteNumberMapper = session.getMapper(SiteNumberMapper.class);
+            siteNumberMapper.updateByPrimaryKeySelective(mId);
+            session.commit();
+        }finally {
+            session.close();
+        }
+    }
 
+    @Override
+    public void updateByPrimaryKey(Integer mId) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            SiteNumberMapper siteNumberMapper = session.getMapper(SiteNumberMapper.class);
+            siteNumberMapper.updateByPrimaryKey(mId);
+            session.commit();
+        }finally {
+            session.close();
+        }
     }
 }

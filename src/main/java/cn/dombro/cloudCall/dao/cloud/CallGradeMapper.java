@@ -14,17 +14,17 @@ import java.io.IOException;
  */
 public interface CallGradeMapper {
 
-    public CallGrade selectByPrimaryKey(Integer mId);
+    public CallGrade selectByPrimaryKey(Integer mId) throws IOException;
 
-    public void deleteByPrimaryKey(Integer mId);
+    public void deleteByPrimaryKey(Integer mId) throws IOException;
 
-    public void insert(CallGrade callGrade);
+    public void insert(CallGrade callGrade) throws IOException;
 
 
     public void insertSelective(CallGrade callGrade) throws IOException;
 
 
-    public void updateByPrimaryKeySelective(Integer mId);
+    public void updateByPrimaryKeySelective(Integer mId) throws IOException;
 
-    public void updateByPrimaryKey(Integer mId);
+    public void updateByPrimaryKey(Integer mId) throws IOException;
 }
