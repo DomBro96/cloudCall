@@ -16,6 +16,14 @@
   <select id="getAll" resultMap="BaseResultMap">
     SELECT * FROM message
   </select>
+  <select id="getListByIdGroupAndRead" resultType="cn.dombro.cloudCall.entity.Message">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM message
+    WHERE receiver_id = #{receiverId,jdbcType=INTEGER}
+    AND re_group =  #{group,jdbcType=VARCHAR}
+    AND readd = #{readd,jdbcType=INTEGER}
+  </select>
   <select id="getListByIdGroup" resultType="cn.dombro.cloudCall.entity.Message">
     SELECT
       <include refid="Base_Column_List"/>

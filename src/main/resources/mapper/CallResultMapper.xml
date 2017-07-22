@@ -10,6 +10,11 @@
   <sql id="Base_Column_List" >
     running_id, m_id, call_result, remark
   </sql>
+  <select id="getRemarkAndResultByRunningId" resultMap="BaseResultMap">
+    SELECT call_result,remark
+    FROM call_result
+    WHERE running_id = #{runningId,jdbcType=BIGINT}
+  </select>
   <select id="getAll" resultMap="BaseResultMap">
     SELECT * FROM call_result
   </select>

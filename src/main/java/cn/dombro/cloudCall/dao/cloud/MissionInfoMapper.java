@@ -2,6 +2,7 @@ package cn.dombro.cloudCall.dao.cloud;
 
 import cn.dombro.cloudCall.entity.CallMission;
 import cn.dombro.cloudCall.entity.MissionInfo;
+import org.apache.ibatis.annotations.Param;
 
 import java.io.IOException;
 import java.util.List;
@@ -26,4 +27,16 @@ public interface MissionInfoMapper {
     public void updateByPrimaryKey(Integer mId) throws IOException;
 
     public List<MissionInfo> getAll() throws IOException;
+
+    public List<MissionInfo> getListByEcId(Integer ecId) throws IOException;
+
+    public List<MissionInfo> getListByEcIdAndAccept(@Param("ecId")Integer ecId ,@Param("acceptStatus")Integer acceptStatus) throws IOException;
+
+    public void deleteByMidAndAccept(@Param("mId")Integer mId, @Param("acceptStatus")Integer acceptStatus) throws IOException;
+
+    public List<MissionInfo> getClassAndClassifyAndInfoByQueryStamLiKe(String queryStatement) throws IOException;
+
+    public List<MissionInfo> getClassAndClassifyAndInfoByQueryStamAllLike(String queryStatement) throws IOException;
+
+    public int getAcceptStatusByMid(Integer mId) throws IOException;
 }

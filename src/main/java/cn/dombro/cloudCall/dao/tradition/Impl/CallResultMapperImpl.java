@@ -111,4 +111,16 @@ public class CallResultMapperImpl implements CallResultMapper{
             session.close();
         }
     }
+
+    @Override
+    public CallResult getRemarkAndResultByRunningId(Long runningId) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            CallResultMapper mapper = session.getMapper(CallResultMapper.class);
+            return mapper.getRemarkAndResultByRunningId(runningId);
+        } finally {
+            session.close();
+        }
+    }
 }

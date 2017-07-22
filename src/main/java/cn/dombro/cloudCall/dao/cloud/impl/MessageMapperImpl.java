@@ -122,27 +122,21 @@ public class MessageMapperImpl implements MessageMapper{
         SqlSession session = sqlSessionFactory.openSession();
         try {
             MessageMapper mapper = session.getMapper(MessageMapper.class);
-            //List<Message> messages =
-             return mapper.getListByIdGroup(receiverId, group);
-            //return messages;
-            //return session.selectList("cn.dombro.cloudCall.dao.cloud.MessageMapper.getListByIdGroup");
+            return mapper.getListByIdGroup(receiverId, group);
         } finally {
             session.close();
         }
     }
 
-    //@Override
-    //public void updateReadById(Integer msg_id) throws IOException {
-    //    SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
-    //    SqlSession session = sqlSessionFactory.openSession();
-    //    try {
-    //        MessageMapper mapper = session.getMapper(MessageMapper.class);
-    //        mapper.updateReadById(msg_id);
-    //        session.commit();
-    //    } finally {
-    //        session.close();
-    //    }
-    //}
-
-
+    @Override
+    public List<Message> getListByIdGroupAndRead(Integer receiverId, String group,Integer readd) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            MessageMapper mapper = session.getMapper(MessageMapper.class);
+            return mapper.getListByIdGroupAndRead(receiverId, group, readd);
+        } finally {
+            session.close();
+        }
+    }
 }

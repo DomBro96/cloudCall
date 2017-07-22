@@ -50,4 +50,15 @@ public class CallMission {
     public void setCallMission(String callMission) {
         this.callMission = callMission;
     }
+
+    @Override
+    public String toString() {
+        return "CallMission{" +
+                "runningId=" + runningId +
+                ", mId=" + mId +
+                ", callNumber=" + callNumber +
+                ", name='" + name + '\'' +
+                ", callMission='" + callMission + '\'' +
+                '}';
+    }
 }

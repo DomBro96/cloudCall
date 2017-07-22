@@ -132,4 +132,23 @@ public class MissionInfo {
     public void setCsId(Integer csId) {
         this.csId = csId;
     }
+
+    @Override
+    public String toString() {
+        return "MissionInfo{" +
+                "mId=" + mId +
+                ", ecId=" + ecId +
+                ", missionName='" + missionName + '\'' +
+                ", missionClassify='" + missionClassify + '\'' +
+                ", issueDate=" + issueDate +
+                ", endDate=" + endDate +
+                ", finishDate=" + finishDate +
+                ", mainInfo='" + mainInfo + '\'' +
+                ", prepay=" + prepay +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", acceptStatus=" + acceptStatus +
+                ", csId=" + csId +
+                '}';
+    }
 }
