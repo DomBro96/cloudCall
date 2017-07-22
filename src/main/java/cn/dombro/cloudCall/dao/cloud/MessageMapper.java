@@ -31,4 +31,6 @@ public interface MessageMapper {
 
     public List<Message> getListByIdGroupAndRead(@Param("receiverId") Integer receiverId, @Param("group") String group,
                                                  @Param("readd") Integer readd) throws IOException;
+
+    public List<Message> getOnly2ByIdGroup(@Param("receiverId") Integer receiverId, @Param("group") String group) throws IOException;
 }
