@@ -34,6 +34,10 @@ public class ClaimUtil {
        return getClaimByHeader(request,headerName).get(claimKey);
   }
 
+  public static Object getValueByPara(HttpServletRequest request,String paraName,String claimKey){
+      return getClaimByPara(request,paraName).get(claimKey);
+  }
+
   private static Map<String,Object> getClaimByPara(HttpServletRequest request,String paraName){
        Map<String,Object> claim = new HashMap<>();
        String token = request.getParameter(paraName);
