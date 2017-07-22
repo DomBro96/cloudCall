@@ -40,4 +40,14 @@ public class CallResult {
     public void setRemark(String remark) {
         this.remark = remark;
     }
+
+    @Override
+    public String toString() {
+        return "CallResult{" +
+                "runningId=" + runningId +
+                ", mId=" + mId +
+                ", callResult=" + callResult +
+                ", remark='" + remark + '\'' +
+                '}';
+    }
 }

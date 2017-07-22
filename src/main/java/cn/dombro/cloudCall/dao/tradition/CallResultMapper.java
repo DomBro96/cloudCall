@@ -26,4 +26,6 @@ public interface CallResultMapper {
     public void updateByPrimaryKey(Long runningId) throws IOException;
 
     public List<CallResult> getAll() throws IOException;
+
+    public CallResult getRemarkAndResultByRunningId(Long runningId) throws IOException;
 }

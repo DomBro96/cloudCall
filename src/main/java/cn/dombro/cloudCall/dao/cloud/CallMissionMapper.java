@@ -26,4 +26,8 @@ public interface CallMissionMapper {
     public void updateByPrimaryKey(Long runningId) throws IOException;
 
     public List<CallMission> getAll() throws IOException;
+
+    public List<CallMission> getListRunningIdByMid(Integer mId) throws IOException;
+
+    public CallMission getByMid(Integer mId) throws IOException;
 }

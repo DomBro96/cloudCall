@@ -127,4 +127,16 @@ public class EnterpriseCustomerMapperImpl implements EnterpriseCustomerMapper{
             session.close();
         }
     }
+
+    @Override
+    public String getComNameById(Integer ecId) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            EnterpriseCustomerMapper mapper = session.getMapper(EnterpriseCustomerMapper.class);
+            return mapper.getComNameById(ecId);
+        } finally {
+            session.close();
+        }
+    }
 }

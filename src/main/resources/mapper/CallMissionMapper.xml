@@ -11,10 +11,18 @@
   <sql id="Base_Column_List" >
     running_id, m_id, call_number, name, call_mission
   </sql>
+  <select id="getByMid" resultMap="BaseResultMap">
+    SELECT * FROM call_mission
+    WHERE m_id = #{mId,jdbcType=INTEGER}
+  </select>
   <select id="getAll" resultMap="BaseResultMap">
     SELECT * FROM call_mission
   </select>
-
+  <select id="getListRunningIdResultByMid" resultMap="BaseResultMap">
+    SELECT *
+      FROM call_mission
+    WHERE m_id = #{mId,jdbcType=INTEGER}
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />

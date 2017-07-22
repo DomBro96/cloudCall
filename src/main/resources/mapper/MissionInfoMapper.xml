@@ -20,6 +20,45 @@
     m_id, ec_id, mission_name, mission_classify, issue_date, end_date, finish_date, main_info, 
     prepay, username, password, accept_status, cs_id
   </sql>
+  <select id="getAcceptStatusByMid" resultType="java.lang.Integer">
+    SELECT accept_status FROM mission_info
+    WHERE m_id = #{mId,jdbcType=INTEGER}
+  </select>
+  <select id="getClassAndClassifyAndInfoByQueryStamLiKe" resultMap="BaseResultMap">
+      SELECT *
+      FROM mission_info
+      WHERE (mission_name LIKE concat(concat('%', #{queryStatement,jdbcType=VARCHAR}), '%')
+             OR mission_classify LIKE concat(concat('%', #{queryStatement,jdbcType=VARCHAR}), '%')
+             OR main_info LIKE concat(concat('%', #{queryStatement,jdbcType=VARCHAR}), '%')
+            )
+      AND accept_status = 0
+  </select>
+  <select id="getClassAndClassifyAndInfoByQueryStamAllLiKe" resultMap="BaseResultMap">
+        SELECT *
+        FROM mission_info
+        WHERE (mission_name LIKE concat(concat('%', #{queryStatement,jdbcType=VARCHAR}), '%')
+        OR mission_classify LIKE concat(concat('%', #{queryStatement,jdbcType=VARCHAR}), '%')
+        OR main_info LIKE concat(concat('%', #{queryStatement,jdbcType=VARCHAR}), '%')
+        )
+  </select>
+  <select id="deleteByMidAndAccept" parameterType="cn.dombro.cloudCall.entity.CallMission">
+    DELETE FROM mission_info
+    WHERE m_id = #{mId,jdbcType=INTEGER}
+    AND accept_status = #{acceptStatus,jdbcType=INTEGER}
+  </select>
+  <select id="getListByEcIdAndAccept" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM mission_info
+    WHERE ec_id = #{ecId,jdbcType=INTEGER}
+    AND accept_status = #{acceptStatus,jdbcType=INTEGER}
+  </select>
+  <select id="getListByEcId" resultMap="BaseResultMap">
+    SELECT
+      <include refid="Base_Column_List"/>
+    FROM mission_info
+    WHERE ec_id = #{ecId,jdbcType=INTEGER}
+  </select>
   <select id="getAll" resultMap="BaseResultMap">
     SELECT * FROM mission_info
   </select>

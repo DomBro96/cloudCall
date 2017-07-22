@@ -30,4 +30,6 @@ public interface EnterpriseCustomerMapper {
     public String selectPswByUser(String username) throws IOException;
 
     public EnterpriseCustomer selectByUser(String username) throws IOException;
+
+    public String getComNameById(Integer ecId) throws IOException;
 }

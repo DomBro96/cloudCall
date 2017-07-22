@@ -104,7 +104,82 @@ public class MissionInfoMapperImpl implements MissionInfoMapper{
         SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try {
-            return session.selectList("cn.dombro.cloudCall.dao.cloud.MissionInfoMapper.getAll");
+            MissionInfoMapper missionInfoMapper = session.getMapper(MissionInfoMapper.class);
+            return missionInfoMapper.getAll();
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public List<MissionInfo> getListByEcId(Integer ecId) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            MissionInfoMapper missionInfoMapper = session.getMapper(MissionInfoMapper.class);
+            return missionInfoMapper.getListByEcId(ecId);
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public List<MissionInfo> getListByEcIdAndAccept(Integer ecId, Integer acceptStatus) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            MissionInfoMapper missionInfoMapper = session.getMapper(MissionInfoMapper.class);
+            return missionInfoMapper.getListByEcIdAndAccept(ecId,acceptStatus);
+        } finally {
+            session.close();
+        }
+
+    }
+
+    @Override
+    public void deleteByMidAndAccept(Integer mId, Integer acceptStatus) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            MissionInfoMapper missionInfoMapper = session.getMapper(MissionInfoMapper.class);
+            missionInfoMapper.deleteByMidAndAccept(mId,acceptStatus);
+            session.commit();
+        }finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public List<MissionInfo> getClassAndClassifyAndInfoByQueryStamLiKe(String queryStatement) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            MissionInfoMapper missionInfoMapper = session.getMapper(MissionInfoMapper.class);
+            return missionInfoMapper.getClassAndClassifyAndInfoByQueryStamLiKe(queryStatement);
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public List<MissionInfo> getClassAndClassifyAndInfoByQueryStamAllLike(String queryStatement) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            MissionInfoMapper missionInfoMapper = session.getMapper(MissionInfoMapper.class);
+            return missionInfoMapper.getClassAndClassifyAndInfoByQueryStamAllLike(queryStatement);
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public int getAcceptStatusByMid(Integer mId) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            MissionInfoMapper missionInfoMapper = session.getMapper(MissionInfoMapper.class);
+            return missionInfoMapper.getAcceptStatusByMid(mId);
         } finally {
             session.close();
         }
