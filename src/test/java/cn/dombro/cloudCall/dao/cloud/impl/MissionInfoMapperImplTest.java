@@ -4,6 +4,9 @@ import cn.dombro.cloudCall.entity.MissionInfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -19,7 +22,7 @@ public class MissionInfoMapperImplTest {
     public void getClassAndClassifyAndInfoByQueryStamLiKe() throws Exception {
         List<MissionInfo> list = MissionInfoMapperImpl.getInfoMapper().getClassAndClassifyAndInfoByQueryStamLiKe("乐");
         for (MissionInfo info : list){
-            System.out.println(info);
+            System.out.println(info.getEndDate());
         }
     }
 }

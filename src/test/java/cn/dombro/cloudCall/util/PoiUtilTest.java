@@ -2,6 +2,7 @@ package cn.dombro.cloudCall.util;
 
 import org.junit.Test;
 import java.io.File;
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -26,8 +27,13 @@ public class PoiUtilTest {
                System.out.print(" 姓名 : " + cellArray[1]);
                System.out.print(" 业务 ：" + cellArray[2]);
                System.out.println();
-
        }
+    }
+
+    @Test
+    public void testMessageUtil(){
+        LocalDate date = LocalDate.parse("2017-07-25");
+        System.out.println(MessageUtil.remindCsByAdmin("光谷洗浴中心按摩",date));
     }
 
 }
