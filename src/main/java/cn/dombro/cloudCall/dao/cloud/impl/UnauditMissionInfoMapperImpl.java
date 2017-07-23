@@ -109,4 +109,42 @@ public class UnauditMissionInfoMapperImpl implements UnauditMissionInfoMapper {
             session.close();
         }
     }
+
+    @Override
+    public String getComNameByEcId(Integer ecId) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try{
+            UnauditMissionInfoMapper mapper = session.getMapper(UnauditMissionInfoMapper.class);
+            return mapper.getComNameByEcId(ecId);
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public List<UnauditMissionInfo> getListByNameAndClassLike(String queryStatement) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try{
+            UnauditMissionInfoMapper mapper = session.getMapper(UnauditMissionInfoMapper.class);
+            return mapper.getListByNameAndClassLike(queryStatement);
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public List<UnauditMissionInfo> getListByEcId(Integer ecId) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try{
+            UnauditMissionInfoMapper mapper = session.getMapper(UnauditMissionInfoMapper.class);
+            return mapper.getListByEcId(ecId);
+        } finally {
+            session.close();
+        }
+    }
+
+
 }

@@ -1,5 +1,6 @@
 package cn.dombro.cloudCall.entity;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class MissionInfo {
@@ -11,11 +12,11 @@ public class MissionInfo {
 
     private String missionClassify;
 
-    private Date issueDate;
+    private LocalDate issueDate;
 
-    private Date endDate;
+    private LocalDate endDate;
 
-    private Date finishDate;
+    private LocalDate finishDate;
 
     private String mainInfo;
 
@@ -61,27 +62,27 @@ public class MissionInfo {
         this.missionClassify = missionClassify;
     }
 
-    public Date getIssueDate() {
+    public LocalDate getIssueDate() {
         return issueDate;
     }
 
-    public void setIssueDate(Date issueDate) {
+    public void setIssueDate(LocalDate issueDate) {
         this.issueDate = issueDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
-    public Date getFinishDate() {
+    public LocalDate getFinishDate() {
         return finishDate;
     }
 
-    public void setFinishDate(Date finishDate) {
+    public void setFinishDate(LocalDate finishDate) {
         this.finishDate = finishDate;
     }
 
