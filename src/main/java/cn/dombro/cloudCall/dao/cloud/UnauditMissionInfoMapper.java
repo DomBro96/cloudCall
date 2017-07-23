@@ -25,4 +25,10 @@ public interface UnauditMissionInfoMapper {
     public void updateByPrimaryKey(Integer mId) throws IOException;
 
     public List<UnauditMissionInfo> getAll() throws IOException;
+
+    public String getComNameByEcId(Integer ecId) throws IOException;
+
+    public List<UnauditMissionInfo> getListByNameAndClassLike(String queryStatement) throws IOException;
+
+    public List<UnauditMissionInfo> getListByEcId(Integer ecId) throws IOException;
 }

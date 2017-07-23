@@ -1,5 +1,6 @@
 package cn.dombro.cloudCall.entity;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class UnauditMissionInfo {
@@ -11,9 +12,9 @@ public class UnauditMissionInfo {
 
     private String missionClassify;
 
-    private Date issueDate;
+    private LocalDate issueDate;
 
-    private Date endDate;
+    private LocalDate endDate;
 
     private String mainInfo;
 
@@ -57,19 +58,19 @@ public class UnauditMissionInfo {
         this.missionClassify = missionClassify;
     }
 
-    public Date getIssueDate() {
+    public LocalDate getIssueDate() {
         return issueDate;
     }
 
-    public void setIssueDate(Date issueDate) {
+    public void setIssueDate(LocalDate issueDate) {
         this.issueDate = issueDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
