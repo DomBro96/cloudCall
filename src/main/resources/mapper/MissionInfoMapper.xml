@@ -20,9 +20,28 @@
     m_id, ec_id, mission_name, mission_classify, issue_date, end_date, finish_date, main_info, 
     prepay, username, password, accept_status, cs_id
   </sql>
+  <select id="getAcceptStatusNumByAcceptStatus" resultType="java.lang.Integer">
+    SELECT count(*) FROM mission_info
+    WHERE accept_status = #{accept_status,jdbcType=INTEGER}
+  </select>
   <select id="getAcceptStatusByMid" resultType="java.lang.Integer">
     SELECT accept_status FROM mission_info
     WHERE m_id = #{mId,jdbcType=INTEGER}
+  </select>
+  <select id="getAcceptStatusNumByCsId" resultType="java.lang.Integer">
+    SELECT count(*) FROM mission_info
+    WHERE ec_id = #{ecId,jdbcType=INTEGER}
+    AND accept_status = 0
+  </select>
+  <select id="getAcceptStatusNumByEcIdAndAccept" resultType="java.lang.Integer">
+    SELECT count(*) FROM mission_info
+    WHERE ec_id = #{ecId,jdbcType=INTEGER}
+    AND accept_status = #{acceptStatus,jdbcType=INTEGER}
+  </select>
+  <select id="getAcceptStatusNumByCsIdAndAccept" resultType="java.lang.Integer">
+    SELECT count(*) FROM mission_info
+    WHERE cs_id = #{csId,jdbcType=INTEGER}
+    AND accept_status = #{acceptStatus,jdbcType=INTEGER}
   </select>
   <select id="getClassAndClassifyAndInfoByQueryStamLiKe" resultMap="BaseResultMap">
       SELECT *
@@ -44,7 +63,11 @@
   <select id="deleteByMidAndAccept" parameterType="cn.dombro.cloudCall.entity.CallMission">
     DELETE FROM mission_info
     WHERE m_id = #{mId,jdbcType=INTEGER}
-    AND accept_status = #{acceptStatus,jdbcType=INTEGER}
+    AND (accept_status = 0
+       OR accept_status = 2
+       OR accept_status = 3
+       OR accept_status = 5
+    )
   </select>
   <select id="getListByEcIdAndAccept" resultMap="BaseResultMap">
     SELECT
