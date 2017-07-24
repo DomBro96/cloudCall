@@ -37,9 +37,9 @@ public class FileUtil {
         String extension = fileName.substring(fileName.lastIndexOf("."));
 
         if (".jpg".equals(extension) || ".png".equals(extension)){
-           setFileview("imgFile");
+             fileView = "imgFile";
         }else{
-            setFileview("excleFile");
+             fileView = "excleFile";
         }
 
 

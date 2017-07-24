@@ -105,7 +105,8 @@ public class SystemAdministratorMapperImpl implements SystemAdministratorMapper{
         SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try {
-            return session.selectList("cn.dombro.cloudCall.dao.info.SystemAdministratorMapper.getAll");
+            SystemAdministratorMapper mapper = session.getMapper(SystemAdministratorMapper.class);
+            return mapper.getAll();
         } finally {
             session.close();
         }

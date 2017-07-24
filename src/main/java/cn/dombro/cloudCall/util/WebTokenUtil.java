@@ -25,6 +25,9 @@ public class WebTokenUtil {
         tokenList.add(token);
 
     }
+    public static void creatTokenList(){
+        tokenList = new ArrayList<>();
+    }
 
     public static List<String> getTokenList() {
         return tokenList;
@@ -44,7 +47,7 @@ public class WebTokenUtil {
 
     //根据 传入的参数  Map 作为载荷,和 header信息 以及 secretKey  一起 经过 HS25 加密算法  创建 Token 字符串,
     public static String createJavaWebToken(Map<String, Object> claims) {
-        tokenList = new ArrayList<>();
+
         return Jwts.builder().setClaims(claims).signWith(SignatureAlgorithm.HS256,getSecretKeyInstance()).compact();
     }
 
