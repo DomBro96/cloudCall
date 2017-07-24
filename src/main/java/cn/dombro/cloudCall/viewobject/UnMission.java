@@ -2,7 +2,9 @@ package cn.dombro.cloudCall.viewobject;
 
 import java.time.LocalDate;
 
-public class Mission {
+
+public class UnMission {
+
     private int mId;
 
     private int number;
@@ -15,9 +17,9 @@ public class Mission {
 
     private Integer prepay;
 
-    private Integer acceptStatus;
+    private Integer auditStatus;
 
-    public  Mission() {
+    public UnMission() {
     }
 
     public void setmId(int mId) {
@@ -44,12 +46,8 @@ public class Mission {
         this.prepay = prepay;
     }
 
-    public Integer getAcceptStatus() {
-        return acceptStatus;
-    }
-
-    public void setAcceptStatus(Integer acceptStatus) {
-        this.acceptStatus = acceptStatus;
+    public void setAuditStatus(Integer auditStatus) {
+        this.auditStatus = auditStatus;
     }
 
     public int getmId() {
@@ -74,6 +72,10 @@ public class Mission {
 
     public Integer getPrepay() {
         return prepay;
+    }
+
+    public Integer getAuditStatus() {
+        return auditStatus;
     }
 
 

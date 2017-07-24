@@ -13,6 +13,7 @@ import cn.dombro.cloudCall.util.ClaimUtil;
 import cn.dombro.cloudCall.util.FileUtil;
 import cn.dombro.cloudCall.util.MessageUtil;
 import cn.dombro.cloudCall.viewobject.Mission;
+import cn.dombro.cloudCall.viewobject.UnMission;
 import com.jfinal.core.Controller;
 import com.jfinal.upload.UploadFile;
 
@@ -67,24 +68,23 @@ public class EnterpriseCustomerController extends Controller {
                 }else if(!paraMap.containsKey("delete")){
                      int ecId = (int) ClaimUtil.getValueByPara(getRequest(),"token","id");
                      List<UnauditMissionInfo> unauditMissionInfoList = UnauditMissionInfoMapperImpl.getMissionInfoMapper().getListByEcId(ecId);
-                     List<Mission> missionList = new ArrayList<>();
+                     List<UnMission> unMissionList = new ArrayList<>();
                      for (int i = 0;i<unauditMissionInfoList.size();i++){
                          UnauditMissionInfo unauditMissionInfo = unauditMissionInfoList.get(i);
-                         System.out.println("endDate:"+unauditMissionInfo.getEndDate());
-                         Mission mission = new Mission();
-                         mission.setmId(unauditMissionInfo.getmId());
-                         mission.setMissionName(unauditMissionInfo.getMissionName());
-                         mission.setIssueDate(unauditMissionInfo.getIssueDate());
-                         mission.setEndDate(unauditMissionInfo.getEndDate());
-                         mission.setAuditStatus(unauditMissionInfo.getAuditStatus());
-                         mission.setPrepay(unauditMissionInfo.getPrepay());
-                         mission.setNumber(i+1);
-                         missionList.add(mission);
+                         UnMission unMission = new UnMission();
+                         unMission.setmId(unauditMissionInfo.getmId());
+                         unMission.setMissionName(unauditMissionInfo.getMissionName());
+                         unMission.setIssueDate(unauditMissionInfo.getIssueDate());
+                         unMission.setEndDate(unauditMissionInfo.getEndDate());
+                         unMission.setAuditStatus(unauditMissionInfo.getAuditStatus());
+                         unMission.setPrepay(unauditMissionInfo.getPrepay());
+                         unMission.setNumber(i+1);
+                         unMissionList.add(unMission);
                      }
                      jsonMap = new HashMap<>();
                      authorization = "T000";
                      jsonMap.put("authorization",authorization);
-                     jsonMap.put("missionList",missionList);
+                     jsonMap.put("unMissionList", unMissionList);
                      renderJson(jsonMap);
                 }
                 break;
@@ -147,15 +147,36 @@ public class EnterpriseCustomerController extends Controller {
         }
     }
 
-    public void missioninfo(){
+    public void missioninfo() throws IOException {
         String authorization = "T000";
         Map<String,String[]> paraMap = getParaMap();
+        int ecId = (int) ClaimUtil.getValueByPara(getRequest(),"token","id");
         if (paraMap.containsKey("delete")){
             String[] mIds =  getRequest().getParameterValues("mId");
             for (String mId:mIds){
 
             }
         }else if (paraMap.containsKey("done")){
+              int done = getParaToInt("done");
+              List<MissionInfo> missionInfoList = MissionInfoMapperImpl.getInfoMapper().getListByEcIdAndAccept(ecId,done);
+              List<Mission> missionList = new ArrayList<>();
+              for (int i = 0;i<missionInfoList.size();i++){
+                  MissionInfo missionInfo = missionInfoList.get(i);
+                  Mission  mission = new Mission();
+                  mission.setmId(missionInfo.getmId());
+                  mission.setMissionName(missionInfo.getMissionName());
+                  mission.setIssueDate(missionInfo.getIssueDate());
+                  mission.setEndDate(missionInfo.getEndDate());
+                  mission.setAcceptStatus(missionInfo.getAcceptStatus());
+                  mission.setPrepay(missionInfo.getPrepay());
+                  mission.setNumber(i+1);
+                  missionList.add(mission);
+              }
+              jsonMap = new HashMap<>();
+
+              jsonMap.put("authorization",authorization);
+              jsonMap.put("missionList",missionInfoList);
+              renderJson(jsonMap);
 
         }else {
 
