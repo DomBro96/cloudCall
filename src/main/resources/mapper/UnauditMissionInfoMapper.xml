@@ -33,10 +33,6 @@
   <select id="getAll" resultMap="BaseResultMap">
     SELECT * FROM unaudit_mission_info
   </select>
-  <select id="getComNameByEcId" resultType="java.lang.String">
-    SELECT company_name FROM unaudit_mission_info
-    WHERE ec_id = #{ecId,jdbcType=INTEGER}
-  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

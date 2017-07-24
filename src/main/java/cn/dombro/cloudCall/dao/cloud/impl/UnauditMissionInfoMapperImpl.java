@@ -111,18 +111,6 @@ public class UnauditMissionInfoMapperImpl implements UnauditMissionInfoMapper {
     }
 
     @Override
-    public String getComNameByEcId(Integer ecId) throws IOException {
-        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
-        SqlSession session = sqlSessionFactory.openSession();
-        try{
-            UnauditMissionInfoMapper mapper = session.getMapper(UnauditMissionInfoMapper.class);
-            return mapper.getComNameByEcId(ecId);
-        } finally {
-            session.close();
-        }
-    }
-
-    @Override
     public List<UnauditMissionInfo> getListByNameAndClassLike(String queryStatement) throws IOException {
         SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();

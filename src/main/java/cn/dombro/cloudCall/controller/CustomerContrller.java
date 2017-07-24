@@ -95,19 +95,19 @@ public class CustomerContrller extends Controller {
            String group =  getPara("group");
            String username = getPara("username");
            String password = getPara("password");
-            switch (group)  {
+           switch (group)  {
 
-               case "sc":
-                   String scpassword = CustomerServiceMapperImpl.getServiceMapper().selectPswByUser(username);
+               case "cs":
+                   String cspassword = CustomerServiceMapperImpl.getServiceMapper().selectPswByUser(username);
                    //账号没有对应密码
-                   if (scpassword == null){
+                   if (cspassword == null){
                         jsonMap.put("code",code);
                         jsonMap.put("msg",msg);
                         jsonMap.put("authorization",authorization);
                         jsonMap.put("token",token);
                         renderJson(jsonMap);
                    }else{
-                     if (password.equals(scpassword)){
+                     if (password.equals(cspassword)){
                          int csId = CustomerServiceMapperImpl.getServiceMapper().selectByUser(username).getCsId();
                          claimMap.put("id",csId);
                          claimMap.put("group","cs");
@@ -213,7 +213,6 @@ public class CustomerContrller extends Controller {
                }
 
         }else {
-
         //如果发送过来的是 GET 请求，说明 是注销用户
         String token = getPara("token");
         if (WebTokenUtil.getTokenList().contains(token)){

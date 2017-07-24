@@ -1,5 +1,7 @@
 package cn.dombro.cloudCall.common;
 
+import cn.dombro.cloudCall.route.CustomerServiceRoute;
+import cn.dombro.cloudCall.route.EnterpriseCustomerRoute;
 import cn.dombro.cloudCall.route.LoginRoute;
 import cn.dombro.cloudCall.route.MessageRoute;
 import cn.dombro.cloudCall.util.WebTokenUtil;
@@ -18,6 +20,8 @@ public class MyConfig extends JFinalConfig {
     public void configRoute(Routes routes) {
         routes.add(new MessageRoute());
         routes.add(new LoginRoute());
+        routes.add(new EnterpriseCustomerRoute());
+        routes.add(new CustomerServiceRoute());
     }
 
     public void configEngine(Engine engine) {

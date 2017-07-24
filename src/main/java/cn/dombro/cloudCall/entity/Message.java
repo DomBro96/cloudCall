@@ -1,5 +1,7 @@
 package cn.dombro.cloudCall.entity;
 
+
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Message {
@@ -13,7 +15,7 @@ public class Message {
 
     private String message;
 
-    private Date sendDateTime;
+    private LocalDateTime sendDateTime;
 
     private Integer readd;
 
@@ -57,11 +59,11 @@ public class Message {
         this.message = message;
     }
 
-    public Date getSendDateTime() {
+    public LocalDateTime getSendDateTime() {
         return sendDateTime;
     }
 
-    public void setSendDateTime(Date sendDateTime) {
+    public void setSendDateTime(LocalDateTime sendDateTime) {
         this.sendDateTime = sendDateTime;
     }
 

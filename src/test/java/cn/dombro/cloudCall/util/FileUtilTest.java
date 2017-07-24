@@ -14,7 +14,7 @@ public class FileUtilTest {
 
     @Test
     public void uploadFiletest(){
-        FileUtil.upload(new File("C:\\Users\\18246\\Desktop\\test.xlsx"),"test2");
+        FileUtil.upload(new File("C:\\Users\\18246\\Desktop\\test.xlsx"),"test3");
         System.out.println(FileUtil.getFilePath());
     }
 }
