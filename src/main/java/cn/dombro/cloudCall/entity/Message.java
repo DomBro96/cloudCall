@@ -1,6 +1,5 @@
 package cn.dombro.cloudCall.entity;
 
-
 import java.time.LocalDateTime;
 import java.util.Date;
 

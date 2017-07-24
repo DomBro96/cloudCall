@@ -29,4 +29,8 @@ public interface UnauditMissionInfoMapper {
     public List<UnauditMissionInfo> getListByNameAndClassLike(String queryStatement) throws IOException;
 
     public List<UnauditMissionInfo> getListByEcId(Integer ecId) throws IOException;
+
+    public int getAuditStatusNumByEcId(Integer ecId) throws IOException;
+
+    public int getAuditStatusNumByAuditStatus(Integer auditStatus) throws IOException;
 }

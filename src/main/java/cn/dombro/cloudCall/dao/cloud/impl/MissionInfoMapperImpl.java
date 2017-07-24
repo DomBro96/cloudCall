@@ -137,12 +137,12 @@ public class MissionInfoMapperImpl implements MissionInfoMapper{
     }
 
     @Override
-    public void deleteByMidAndAccept(Integer mId, Integer acceptStatus) throws IOException {
+    public void deleteByMidAndAccept(Integer mId) throws IOException {
         SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try {
             MissionInfoMapper missionInfoMapper = session.getMapper(MissionInfoMapper.class);
-            missionInfoMapper.deleteByMidAndAccept(mId,acceptStatus);
+            missionInfoMapper.deleteByMidAndAccept(mId);
             session.commit();
         }finally {
             session.close();
@@ -181,6 +181,54 @@ public class MissionInfoMapperImpl implements MissionInfoMapper{
             MissionInfoMapper missionInfoMapper = session.getMapper(MissionInfoMapper.class);
             return missionInfoMapper.getAcceptStatusByMid(mId);
         } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public int getAcceptStatusNumByEcIdAndAccept(Integer ecId, Integer acceptStatus) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            MissionInfoMapper missionInfoMapper = session.getMapper(MissionInfoMapper.class);
+            return missionInfoMapper.getAcceptStatusNumByEcIdAndAccept(ecId,acceptStatus);
+        }finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public int getAcceptStatusNumByCsIdAndAccept(Integer csId, Integer acceptStatus) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            MissionInfoMapper missionInfoMapper = session.getMapper(MissionInfoMapper.class);
+            return missionInfoMapper.getAcceptStatusNumByCsIdAndAccept(csId,acceptStatus);
+        }finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public int getAcceptStatusNumByCsId(Integer csId) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            MissionInfoMapper missionInfoMapper = session.getMapper(MissionInfoMapper.class);
+            return missionInfoMapper.getAcceptStatusNumByCsId(csId);
+        }finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public int getAcceptStatusNumByAcceptStatus(Integer acceptStatus) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            MissionInfoMapper missionInfoMapper = session.getMapper(MissionInfoMapper.class);
+            return missionInfoMapper.getAcceptStatusNumByAcceptStatus(acceptStatus);
+        }finally {
             session.close();
         }
     }
