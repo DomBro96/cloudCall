@@ -44,4 +44,10 @@ public class MessageMapperImplTest {
         MessageMapperImpl.getMessageMapper().insertSelective(message);
     }
 
+    @Test
+    public void test3() throws IOException {
+        List<Message> messages = MessageMapperImpl.getMessageMapper().getListByIdGroupAndRead(1,"ec",0);
+        System.out.println(messages);
+    }
+
 }
