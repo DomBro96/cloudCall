@@ -21,9 +21,9 @@ public interface EnterpriseCustomerMapper {
 
     public void insertSelective(EnterpriseCustomer enterpriseCustomer) throws IOException;
 
-    public void updateByPrimaryKeySelective(Integer ecId) throws IOException;
+    public void updateByPrimaryKeySelective(EnterpriseCustomer enterpriseCustomer) throws IOException;
 
-    public void updateByPrimaryKey(Integer ecId) throws IOException;
+    public void updateByPrimaryKey(EnterpriseCustomer enterpriseCustomer) throws IOException;
 
     public List<EnterpriseCustomer> getAll() throws IOException;
 

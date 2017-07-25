@@ -74,12 +74,12 @@ public class UnauditMissionInfoMapperImpl implements UnauditMissionInfoMapper {
     }
 
     @Override
-    public void updateByPrimaryKeySelective(Integer mId) throws IOException {
+    public void updateByPrimaryKeySelective(UnauditMissionInfo unauditMissionInfo) throws IOException {
         SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try{
             UnauditMissionInfoMapper mapper = session.getMapper(UnauditMissionInfoMapper.class);
-            mapper.updateByPrimaryKeySelective(mId);
+            mapper.updateByPrimaryKeySelective(unauditMissionInfo);
             session.commit();
         } finally {
             session.close();
@@ -87,12 +87,12 @@ public class UnauditMissionInfoMapperImpl implements UnauditMissionInfoMapper {
     }
 
     @Override
-    public void updateByPrimaryKey(Integer mId) throws IOException {
+    public void updateByPrimaryKey(UnauditMissionInfo unauditMissionInfo) throws IOException {
         SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try{
             UnauditMissionInfoMapper mapper = session.getMapper(UnauditMissionInfoMapper.class);
-            mapper.updateByPrimaryKey(mId);
+            mapper.updateByPrimaryKey(unauditMissionInfo);
             session.commit();
         } finally {
             session.close();

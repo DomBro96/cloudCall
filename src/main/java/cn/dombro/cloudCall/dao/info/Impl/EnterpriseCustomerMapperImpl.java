@@ -71,24 +71,24 @@ public class EnterpriseCustomerMapperImpl implements EnterpriseCustomerMapper{
         }
     }
 
-    public void updateByPrimaryKeySelective(Integer ecId) throws IOException {
+    public void updateByPrimaryKeySelective(EnterpriseCustomer enterpriseCustomer) throws IOException {
         SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try {
             EnterpriseCustomerMapper mapper = session.getMapper(EnterpriseCustomerMapper.class);
-            mapper.updateByPrimaryKeySelective(ecId);
+            mapper.updateByPrimaryKeySelective(enterpriseCustomer);
             session.commit();
         } finally {
             session.close();
         }
     }
 
-    public void updateByPrimaryKey(Integer ecId) throws IOException {
+    public void updateByPrimaryKey(EnterpriseCustomer enterpriseCustomer) throws IOException {
         SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try {
             EnterpriseCustomerMapper mapper = session.getMapper(EnterpriseCustomerMapper.class);
-            mapper.updateByPrimaryKey(ecId);
+            mapper.updateByPrimaryKey(enterpriseCustomer);
             session.commit();
         } finally {
             session.close();

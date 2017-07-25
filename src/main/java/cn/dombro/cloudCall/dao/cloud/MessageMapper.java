@@ -21,9 +21,9 @@ public interface MessageMapper {
 
     public void insertSelective(Message message) throws IOException;
 
-    public void updateByPrimaryKeySelective(Integer msg_id) throws IOException;
+    public void updateByPrimaryKeySelective(Message message) throws IOException;
 
-    public void updateByPrimaryKey(Integer msg_id) throws IOException;
+    public void updateByPrimaryKey(Message message) throws IOException;
 
     public List<Message> getAll() throws IOException;
 

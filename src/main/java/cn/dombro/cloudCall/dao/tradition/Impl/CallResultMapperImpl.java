@@ -76,12 +76,12 @@ public class CallResultMapperImpl implements CallResultMapper{
     }
 
     @Override
-    public void updateByPrimaryKeySelective(Long runningId) throws IOException {
+    public void updateByPrimaryKeySelective(CallResult callResult) throws IOException {
         SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try {
             CallResultMapper mapper = session.getMapper(CallResultMapper.class);
-            mapper.updateByPrimaryKeySelective(runningId);
+            mapper.updateByPrimaryKeySelective(callResult);
             session.commit();
         }finally {
             session.close();
@@ -89,12 +89,12 @@ public class CallResultMapperImpl implements CallResultMapper{
     }
 
     @Override
-    public void updateByPrimaryKey(Long runningId) throws IOException {
+    public void updateByPrimaryKey(CallResult callResult) throws IOException {
         SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try {
             CallResultMapper mapper = session.getMapper(CallResultMapper.class);
-            mapper.updateByPrimaryKey(runningId);
+            mapper.updateByPrimaryKey(callResult);
             session.commit();
         }finally {
             session.close();

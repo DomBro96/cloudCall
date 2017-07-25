@@ -20,9 +20,9 @@ public interface UnauditMissionInfoMapper {
 
     public void insertSelective(UnauditMissionInfo unauditMissionInfo) throws IOException;
 
-    public void updateByPrimaryKeySelective(Integer mId) throws IOException;
+    public void updateByPrimaryKeySelective(UnauditMissionInfo unauditMissionInfo) throws IOException;
 
-    public void updateByPrimaryKey(Integer mId) throws IOException;
+    public void updateByPrimaryKey(UnauditMissionInfo unauditMissionInfo) throws IOException;
 
     public List<UnauditMissionInfo> getAll() throws IOException;
 

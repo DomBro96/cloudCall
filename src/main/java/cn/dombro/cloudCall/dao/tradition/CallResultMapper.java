@@ -21,9 +21,9 @@ public interface CallResultMapper {
 
     public void insertSelective(CallResult callResult) throws IOException;
 
-    public void updateByPrimaryKeySelective(Long runningId) throws IOException;
+    public void updateByPrimaryKeySelective(CallResult callResult) throws IOException;
 
-    public void updateByPrimaryKey(Long runningId) throws IOException;
+    public void updateByPrimaryKey(CallResult callResult) throws IOException;
 
     public List<CallResult> getAll() throws IOException;
 

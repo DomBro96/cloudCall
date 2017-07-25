@@ -74,12 +74,12 @@ public class MissionInfoMapperImpl implements MissionInfoMapper{
     }
 
     @Override
-    public void updateByPrimaryKeySelective(Integer mId) throws IOException {
+    public void updateByPrimaryKeySelective(MissionInfo missionInfo) throws IOException {
         SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try {
             MissionInfoMapper missionInfoMapper = session.getMapper(MissionInfoMapper.class);
-            missionInfoMapper.updateByPrimaryKeySelective(mId);
+            missionInfoMapper.updateByPrimaryKeySelective(missionInfo);
             session.commit();
         }finally {
             session.close();
@@ -87,12 +87,12 @@ public class MissionInfoMapperImpl implements MissionInfoMapper{
     }
 
     @Override
-    public void updateByPrimaryKey(Integer mId) throws IOException {
+    public void updateByPrimaryKey(MissionInfo missionInfo) throws IOException {
         SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try {
             MissionInfoMapper missionInfoMapper = session.getMapper(MissionInfoMapper.class);
-            missionInfoMapper.updateByPrimaryKey(mId);
+            missionInfoMapper.updateByPrimaryKey(missionInfo);
             session.commit();
         }finally {
             session.close();

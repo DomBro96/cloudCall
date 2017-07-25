@@ -22,9 +22,9 @@ public interface MissionInfoMapper {
 
     public void insertSelective(MissionInfo missionInfo) throws IOException;
 
-    public void updateByPrimaryKeySelective(Integer mId) throws IOException;
+    public void updateByPrimaryKeySelective(MissionInfo missionInfo) throws IOException;
 
-    public void updateByPrimaryKey(Integer mId) throws IOException;
+    public void updateByPrimaryKey(MissionInfo missionInfo) throws IOException;
 
     public List<MissionInfo> getAll() throws IOException;
 
