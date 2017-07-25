@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
  * CreateTime: 16:18
  */
 
-public class UnauditMissionInfoMapperImplTest {
+public class UnauditMissionInfoInfoMapperImplTest {
     @Test
     public void getAuditStatusNumByEcId() throws Exception {
         int num =  UnauditMissionInfoMapperImpl.getMissionInfoMapper().getAuditStatusNumByEcId(1);

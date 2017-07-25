@@ -1,21 +1,25 @@
 package cn.dombro.cloudCall.viewobject;
 
-public class Mission {
+import java.time.LocalDate;
+
+
+public class UnMission {
+
     private int mId;
 
     private int number;
 
     private String missionName;
 
-    private String issueDate;
+    private LocalDate issueDate;
 
-    private String endDate;
+    private LocalDate endDate;
 
     private Integer prepay;
 
-    private Integer acceptStatus;
+    private Integer auditStatus;
 
-    public Mission() {
+    public UnMission() {
     }
 
     public void setmId(int mId) {
@@ -30,11 +34,11 @@ public class Mission {
         this.missionName = missionName;
     }
 
-    public void setIssueDate(String issueDate) {
+    public void setIssueDate(LocalDate issueDate) {
         this.issueDate = issueDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
@@ -42,8 +46,8 @@ public class Mission {
         this.prepay = prepay;
     }
 
-    public void setAcceptStatus(Integer acceptStatus) {
-        this.acceptStatus = acceptStatus;
+    public void setAuditStatus(Integer auditStatus) {
+        this.auditStatus = auditStatus;
     }
 
     public int getmId() {
@@ -59,31 +63,20 @@ public class Mission {
     }
 
     public String getIssueDate() {
-        return issueDate;
+        return issueDate.toString();
     }
 
     public String getEndDate() {
-        return endDate;
+        return endDate.toString();
     }
 
     public Integer getPrepay() {
         return prepay;
     }
 
-    public Integer getAcceptStatus() {
-        return acceptStatus;
+    public Integer getAuditStatus() {
+        return auditStatus;
     }
 
-    @Override
-    public String toString() {
-        return "Mission{" +
-                "mId=" + mId +
-                ", number=" + number +
-                ", missionName='" + missionName + '\'' +
-                ", issueDate='" + issueDate + '\'' +
-                ", endDate='" + endDate + '\'' +
-                ", prepay=" + prepay +
-                ", acceptStatus=" + acceptStatus +
-                '}';
-    }
+
 }

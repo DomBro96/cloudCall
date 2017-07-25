@@ -110,7 +110,6 @@ public class CallMissionMapperImpl implements CallMissionMapper{
         }
     }
 
-
     @Override
     public List<CallMission> getByMid(Integer mId) throws IOException {
         SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();

@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
  * CreateTime: 11:34
  */
 
-public class MissionInfoMapperImplTest {
+public class UnMissionInfoInfoMapperImplTest {
     @Test
     public void getClassAndClassifyAndInfoByQueryStamLiKe() throws Exception {
         List<MissionInfo> list = MissionInfoMapperImpl.getInfoMapper().getClassAndClassifyAndInfoByQueryStamLiKe("乐");
