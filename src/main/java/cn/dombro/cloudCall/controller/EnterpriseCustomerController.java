@@ -5,10 +5,7 @@ import cn.dombro.cloudCall.dao.cloud.impl.MissionInfoMapperImpl;
 import cn.dombro.cloudCall.dao.cloud.impl.UnauditMissionInfoMapperImpl;
 import cn.dombro.cloudCall.dao.info.Impl.EnterpriseCustomerMapperImpl;
 import cn.dombro.cloudCall.dao.info.Impl.SystemAdministratorMapperImpl;
-import cn.dombro.cloudCall.entity.Message;
-import cn.dombro.cloudCall.entity.MissionInfo;
-import cn.dombro.cloudCall.entity.SystemAdministrator;
-import cn.dombro.cloudCall.entity.UnauditMissionInfo;
+import cn.dombro.cloudCall.entity.*;
 import cn.dombro.cloudCall.util.ClaimUtil;
 import cn.dombro.cloudCall.util.FileUtil;
 import cn.dombro.cloudCall.util.MessageUtil;
@@ -84,7 +81,7 @@ public class EnterpriseCustomerController extends Controller {
                      jsonMap = new HashMap<>();
                      authorization = "T000";
                      jsonMap.put("authorization",authorization);
-                     jsonMap.put("unMissionList", unMissionList);
+                     jsonMap.put("missionList", unMissionList);
                      renderJson(jsonMap);
                 }
                 break;
@@ -154,36 +151,129 @@ public class EnterpriseCustomerController extends Controller {
         if (paraMap.containsKey("delete")){
             String[] mIds =  getRequest().getParameterValues("mId");
             for (String mId:mIds){
-
+                int deleteId = Integer.parseInt(mId);
+                MissionInfoMapperImpl.getInfoMapper().deleteByMidAndAccept(deleteId);
             }
+            jsonMap = new HashMap<>();
+            jsonMap.put("authorization",authorization);
+            renderJson(jsonMap);
         }else if (paraMap.containsKey("done")){
+            List<MissionInfo> missionInfoList  = null;
+            List<Mission> missionList = new ArrayList<>();
               int done = getParaToInt("done");
-              List<MissionInfo> missionInfoList = MissionInfoMapperImpl.getInfoMapper().getListByEcIdAndAccept(ecId,done);
-              List<Mission> missionList = new ArrayList<>();
+
+              switch (done){
+                  case 1:
+                   missionInfoList = MissionInfoMapperImpl.getInfoMapper().getListByEcIdAndAccept(ecId,2);
+                   break;
+
+                   case 0:
+                   missionInfoList = MissionInfoMapperImpl.getInfoMapper().getListByEcId(ecId);
+                   break;
+              }
+
               for (int i = 0;i<missionInfoList.size();i++){
                   MissionInfo missionInfo = missionInfoList.get(i);
-                  Mission  mission = new Mission();
+                  System.out.println(missionInfo.getEndDate().toString());
+                  Mission mission = new Mission();
                   mission.setmId(missionInfo.getmId());
                   mission.setMissionName(missionInfo.getMissionName());
-                  mission.setIssueDate(missionInfo.getIssueDate());
-                  mission.setEndDate(missionInfo.getEndDate());
+                  mission.setIssueDate(missionInfo.getIssueDate().toString());
+                  mission.setEndDate(missionInfo.getEndDate().toString());
                   mission.setAcceptStatus(missionInfo.getAcceptStatus());
                   mission.setPrepay(missionInfo.getPrepay());
                   mission.setNumber(i+1);
                   missionList.add(mission);
               }
               jsonMap = new HashMap<>();
-
               jsonMap.put("authorization",authorization);
-              jsonMap.put("missionList",missionInfoList);
+              jsonMap.put("missionList",missionList);
               renderJson(jsonMap);
 
         }else {
-
+              int mId = getParaToInt("mId");
+              cn.dombro.cloudCall.entity.MissionInfo missionInfo = MissionInfoMapperImpl.getInfoMapper().selectByPrimaryKey(mId);
+              jsonMap = new HashMap<>();
+              jsonMap.put("authorization",authorization);
+              jsonMap.put("mId",mId);
+              jsonMap.put("missionName",missionInfo.getMissionName());
+              jsonMap.put("prepay",missionInfo.getPrepay());
+              jsonMap.put("finishDate",missionInfo.getFinishDate().toString());
+              jsonMap.put("missionClassify",missionInfo.getMissionClassify());
+              jsonMap.put("mainInfo",missionInfo.getMainInfo());
+              renderJson(jsonMap);
         }
 
     }
 
+    public void callgrade() throws IOException {
+        int mId = getParaToInt("mId");
+        int cGrade = getParaToInt("cGrade");
+        String cRemark = getPara("cRemark");
+        MissionInfoMapperImpl.getInfoMapper();
+
+    }
+
+    public void calllist() throws IOException {
+        String authorization = "T000";
+        int ecId = (int) ClaimUtil.getValueByPara(getRequest(),"token","id");
+        int b = UnauditMissionInfoMapperImpl.getMissionInfoMapper().getAuditStatusNumByEcId(ecId);
+        int a = MissionInfoMapperImpl.getInfoMapper().getAcceptStatusNumByEcIdAndAccept(ecId,0);
+        int c = MissionInfoMapperImpl.getInfoMapper().getAcceptStatusNumByEcIdAndAccept(ecId,4);
+        int d = MissionInfoMapperImpl.getInfoMapper().getAcceptStatusNumByEcIdAndAccept(ecId,1);
+        int e = MissionInfoMapperImpl.getInfoMapper().getAcceptStatusNumByEcIdAndAccept(ecId,2);
+        jsonMap = new HashMap<>();
+        jsonMap.put("authorization",authorization);
+        jsonMap.put("a",a);
+        jsonMap.put("b",b);
+        jsonMap.put("c",c);
+        jsonMap.put("d",d);
+        jsonMap.put("e",e);
+        renderJson(jsonMap);
+    }
+
+    public void enterprisecustomer() throws IOException {
+        String method = getRequest().getMethod();
+        String authorization = "T000";
+        switch (method){
+            case "POST":
+
+
+                break;
+
+            case "GET" :
+                int ecId = (int) ClaimUtil.getValueByPara(getRequest(),"token","id");
+                int all =  getParaToInt("all");
+                EnterpriseCustomer enterpriseCustomer = EnterpriseCustomerMapperImpl.getCustomerMapper().selectByPrimaryKey(ecId);
+                String username = enterpriseCustomer.getUsername();
+                String companyName = enterpriseCustomer.getCompanyName();
+                long phoneNumber = enterpriseCustomer.getPhoneNumber();
+                String account = enterpriseCustomer.getAccount();
+                String password = enterpriseCustomer.getPassword();
+                String email = enterpriseCustomer.getEmail();
+                String license = enterpriseCustomer.getLicense();
+                jsonMap = new HashMap<>();
+                jsonMap.put("authorization",authorization);
+                jsonMap.put("username",username);
+                jsonMap.put("companyName",companyName);
+                jsonMap.put("phoneNumber",phoneNumber);
+                jsonMap.put("account",account);
+                if (all == 0){
+                    renderJson(jsonMap);
+                }else {
+                jsonMap.put("password",password);
+                jsonMap.put("email",email);
+                jsonMap.put("license",license);
+                renderJson(jsonMap);
+                }
+                break;
+        }
+    }
+
+    public void callmission_callresult(){
+        getRequest().getParameterMap();
+        int mId = getParaToInt("mId");
+    }
 
 
 }

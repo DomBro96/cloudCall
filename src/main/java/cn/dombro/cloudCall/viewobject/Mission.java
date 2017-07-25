@@ -1,7 +1,5 @@
 package cn.dombro.cloudCall.viewobject;
 
-import java.time.LocalDate;
-
 public class Mission {
     private int mId;
 
@@ -9,15 +7,15 @@ public class Mission {
 
     private String missionName;
 
-    private LocalDate issueDate;
+    private String issueDate;
 
-    private LocalDate endDate;
+    private String endDate;
 
     private Integer prepay;
 
     private Integer acceptStatus;
 
-    public  Mission() {
+    public Mission() {
     }
 
     public void setmId(int mId) {
@@ -32,20 +30,16 @@ public class Mission {
         this.missionName = missionName;
     }
 
-    public void setIssueDate(LocalDate issueDate) {
+    public void setIssueDate(String issueDate) {
         this.issueDate = issueDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
     public void setPrepay(Integer prepay) {
         this.prepay = prepay;
-    }
-
-    public Integer getAcceptStatus() {
-        return acceptStatus;
     }
 
     public void setAcceptStatus(Integer acceptStatus) {
@@ -65,16 +59,31 @@ public class Mission {
     }
 
     public String getIssueDate() {
-        return issueDate.toString();
+        return issueDate;
     }
 
     public String getEndDate() {
-        return endDate.toString();
+        return endDate;
     }
 
     public Integer getPrepay() {
         return prepay;
     }
 
+    public Integer getAcceptStatus() {
+        return acceptStatus;
+    }
 
+    @Override
+    public String toString() {
+        return "Mission{" +
+                "mId=" + mId +
+                ", number=" + number +
+                ", missionName='" + missionName + '\'' +
+                ", issueDate='" + issueDate + '\'' +
+                ", endDate='" + endDate + '\'' +
+                ", prepay=" + prepay +
+                ", acceptStatus=" + acceptStatus +
+                '}';
+    }
 }
