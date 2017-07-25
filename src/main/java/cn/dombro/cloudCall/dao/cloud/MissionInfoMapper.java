@@ -36,7 +36,7 @@ public interface MissionInfoMapper {
 
     public List<MissionInfo> getClassAndClassifyAndInfoByQueryStamLiKe(String queryStatement) throws IOException;
 
-    public List<MissionInfo> getClassAndClassifyAndInfoByQueryStamAllLike(String queryStatement) throws IOException;
+    public List<MissionInfo> getAllByQueryStatementLike(String queryStatement) throws IOException;
 
     public int getAcceptStatusByMid(Integer mId) throws IOException;
 

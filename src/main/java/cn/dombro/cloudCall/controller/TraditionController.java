@@ -1,15 +1,19 @@
 package cn.dombro.cloudCall.controller;
 
 import cn.dombro.cloudCall.dao.tradition.Impl.CallResultMapperImpl;
+import cn.dombro.cloudCall.dao.tradition.Impl.SiteNumberMapperImpl;
 import cn.dombro.cloudCall.entity.CallMission;
 import cn.dombro.cloudCall.entity.CallResult;
+import cn.dombro.cloudCall.entity.SiteNumber;
 import cn.dombro.cloudCall.viewobject.MissionDetail;
 import com.jfinal.core.Controller;
 
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TraditionController extends Controller{
 
@@ -23,7 +27,21 @@ public class TraditionController extends Controller{
                 callResult.getCallResult().toString(),callMission.getCallMission(),callResult.getRemark());
         missionDetails.add(missionDetail);
        }
-       setAttr("missionDetails",missionDetails);
-       forwardAction("/ec/missiondetail");
+        String authorization = "T000";
+        Map<String,Object> jsonMap = new HashMap<>();
+        jsonMap.put("authorization", authorization);
+        jsonMap.put("missionDetails",missionDetails);
+        renderJson(jsonMap);
+    }
+
+    public void sitnumber() throws IOException {
+       int mId = getAttr("mId");
+       SiteNumber siteNumber = SiteNumberMapperImpl.getNumberMapper().selectByPrimaryKey(mId);
+       String username = siteNumber.getUsername();
+       String password = siteNumber.getPassword();
+       setAttr("mId",mId);
+       setAttr("username",username);
+       setAttr("password",password);
+       forwardAction("/cs/sitnumber");
     }
 }

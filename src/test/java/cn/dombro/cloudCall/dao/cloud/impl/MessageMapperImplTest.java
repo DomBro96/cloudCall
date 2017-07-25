@@ -1,6 +1,7 @@
 package cn.dombro.cloudCall.dao.cloud.impl;
 
 import cn.dombro.cloudCall.entity.Message;
+import cn.dombro.cloudCall.entity.MissionInfo;
 import cn.dombro.cloudCall.util.MessageUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -48,6 +49,14 @@ public class MessageMapperImplTest {
     public void test3() throws IOException {
         List<Message> messages = MessageMapperImpl.getMessageMapper().getListByIdGroupAndRead(1,"ec",0);
         System.out.println(messages);
+    }
+
+    @Test
+    public void test4() throws IOException {
+        List<MissionInfo> missionInfoList =
+                MissionInfoMapperImpl.getInfoMapper().getClassAndClassifyAndInfoByQueryStamLiKe("看");
+        List<MissionInfo> missionInfoList2 =
+                MissionInfoMapperImpl.getInfoMapper().getAllByQueryStatementLike("看");
     }
 
 }

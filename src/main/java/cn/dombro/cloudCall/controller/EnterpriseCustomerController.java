@@ -192,7 +192,7 @@ public class EnterpriseCustomerController extends Controller {
 
         } else {
             int mId = getParaToInt("mId");
-            cn.dombro.cloudCall.entity.MissionInfo missionInfo = MissionInfoMapperImpl.getInfoMapper().selectByPrimaryKey(mId);
+            MissionInfo missionInfo = MissionInfoMapperImpl.getInfoMapper().selectByPrimaryKey(mId);
             jsonMap = new HashMap<>();
             jsonMap.put("authorization", authorization);
             jsonMap.put("mId", mId);
@@ -222,10 +222,10 @@ public class EnterpriseCustomerController extends Controller {
         String authorization = "T000";
         int ecId = (int) ClaimUtil.getValueByPara(getRequest(), "token", "id");
         int b = UnauditMissionInfoMapperImpl.getMissionInfoMapper().getAuditStatusNumByEcId(ecId);
-        int a = MissionInfoMapperImpl.getInfoMapper().getAcceptStatusNumByEcIdAndAccept(ecId, 0);
-        int c = MissionInfoMapperImpl.getInfoMapper().getAcceptStatusNumByEcIdAndAccept(ecId, 4);
-        int d = MissionInfoMapperImpl.getInfoMapper().getAcceptStatusNumByEcIdAndAccept(ecId, 1);
-        int e = MissionInfoMapperImpl.getInfoMapper().getAcceptStatusNumByEcIdAndAccept(ecId, 2);
+        int a = MissionInfoMapperImpl.getInfoMapper().getAcceptStatusNumByEcIdAndAccept(ecId,0);
+        int c = MissionInfoMapperImpl.getInfoMapper().getAcceptStatusNumByEcIdAndAccept(ecId,4);
+        int d = MissionInfoMapperImpl.getInfoMapper().getAcceptStatusNumByEcIdAndAccept(ecId,1);
+        int e = MissionInfoMapperImpl.getInfoMapper().getAcceptStatusNumByEcIdAndAccept(ecId,2);
         jsonMap = new HashMap<>();
         jsonMap.put("authorization", authorization);
         jsonMap.put("a", a);
@@ -286,7 +286,6 @@ public class EnterpriseCustomerController extends Controller {
         Map<String, String[]> paraMap = getRequest().getParameterMap();
         int mId = getParaToInt("mId");
         List<CallMission> callMissionList = CallMissionMapperImpl.getMissionMapper().getByMid(mId);
-        String authorization = "T000";
         if (paraMap.containsKey("mId")) {
             setAttr("callMissionList", callMissionList);
             forwardAction("/tr/callresult");
@@ -294,13 +293,5 @@ public class EnterpriseCustomerController extends Controller {
 
     }
 
-    public void missiondetail(){
-        String authorization = "T000";
-        List<MissionDetail> missionDetais = getAttr("missionDetails");
-        jsonMap = new HashMap<>();
-        jsonMap.put("authorization", authorization);
-        jsonMap.put("missionDetails",missionDetais);
-        renderJson(jsonMap);
-    }
 }
 
