@@ -70,24 +70,24 @@ public class CallGradeMapperImpl implements CallGradeMapper {
         }
     }
 
-    public void updateByPrimaryKeySelective(Integer mId) throws IOException {
+    public void updateByPrimaryKeySelective(CallGrade callGrade) throws IOException {
         SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try {
             CallGradeMapper mapper = session.getMapper(CallGradeMapper.class);
-            mapper.updateByPrimaryKeySelective(mId);
+            mapper.updateByPrimaryKeySelective(callGrade);
             session.commit();
         } finally {
             session.close();
         }
     }
 
-    public void updateByPrimaryKey(Integer mId) throws IOException {
+    public void updateByPrimaryKey(CallGrade callGrade) throws IOException {
         SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try {
             CallGradeMapper mapper = session.getMapper(CallGradeMapper.class);
-            mapper.updateByPrimaryKey(mId);
+            mapper.updateByPrimaryKey(callGrade);
             session.commit();
         } finally {
             session.close();

@@ -75,12 +75,12 @@ public class SystemAdministratorMapperImpl implements SystemAdministratorMapper{
     }
 
     @Override
-    public void updateByPrimaryKeySelective(Integer saId) throws IOException {
+    public void updateByPrimaryKeySelective(SystemAdministrator systemAdministrator) throws IOException {
         SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try {
             SystemAdministratorMapper mapper = session.getMapper(SystemAdministratorMapper.class);
-            mapper.updateByPrimaryKeySelective(saId);
+            mapper.updateByPrimaryKeySelective(systemAdministrator);
             session.commit();
         } finally {
             session.close();
@@ -88,12 +88,12 @@ public class SystemAdministratorMapperImpl implements SystemAdministratorMapper{
     }
 
     @Override
-    public void updateByPrimaryKey(Integer saId) throws IOException {
+    public void updateByPrimaryKey(SystemAdministrator systemAdministrator) throws IOException {
         SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try {
             SystemAdministratorMapper mapper = session.getMapper(SystemAdministratorMapper.class);
-            mapper.updateByPrimaryKey(saId);
+            mapper.updateByPrimaryKey(systemAdministrator);
             session.commit();
         } finally {
             session.close();

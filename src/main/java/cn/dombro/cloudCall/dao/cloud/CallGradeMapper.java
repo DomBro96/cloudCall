@@ -22,9 +22,9 @@ public interface CallGradeMapper {
 
     public void insertSelective(CallGrade callGrade) throws IOException;
 
-    public void updateByPrimaryKeySelective(Integer mId) throws IOException;
+    public void updateByPrimaryKeySelective(CallGrade callGrade) throws IOException;
 
-    public void updateByPrimaryKey(Integer mId) throws IOException;
+    public void updateByPrimaryKey(CallGrade callGrade) throws IOException;
 
     public List<CallGrade> getAll() throws IOException;
 }

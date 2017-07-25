@@ -75,12 +75,12 @@ public class SiteNumberMapperImpl implements SiteNumberMapper{
     }
 
     @Override
-    public void updateByPrimaryKeySelective(Integer mId) throws IOException {
+    public void updateByPrimaryKeySelective(SiteNumber siteNumber) throws IOException {
         SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try {
             SiteNumberMapper siteNumberMapper = session.getMapper(SiteNumberMapper.class);
-            siteNumberMapper.updateByPrimaryKeySelective(mId);
+            siteNumberMapper.updateByPrimaryKeySelective(siteNumber);
             session.commit();
         }finally {
             session.close();
@@ -88,12 +88,12 @@ public class SiteNumberMapperImpl implements SiteNumberMapper{
     }
 
     @Override
-    public void updateByPrimaryKey(Integer mId) throws IOException {
+    public void updateByPrimaryKey(SiteNumber siteNumber) throws IOException {
         SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try {
             SiteNumberMapper siteNumberMapper = session.getMapper(SiteNumberMapper.class);
-            siteNumberMapper.updateByPrimaryKey(mId);
+            siteNumberMapper.updateByPrimaryKey(siteNumber);
             session.commit();
         }finally {
             session.close();

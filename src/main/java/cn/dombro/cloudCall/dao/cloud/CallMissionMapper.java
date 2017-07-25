@@ -21,9 +21,9 @@ public interface CallMissionMapper {
 
     public void insertSelective(CallMission callMission) throws IOException;
 
-    public void updateByPrimaryKeySelective(Long runningId) throws IOException;
+    public void updateByPrimaryKeySelective(CallMission callMission) throws IOException;
 
-    public void updateByPrimaryKey(Long runningId) throws IOException;
+    public void updateByPrimaryKey(CallMission callMission) throws IOException;
 
     public List<CallMission> getAll() throws IOException;
 

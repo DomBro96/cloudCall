@@ -76,12 +76,12 @@ public class MessageMapperImpl implements MessageMapper{
     }
 
     @Override
-    public void updateByPrimaryKeySelective(Integer msg_id) throws IOException {
+    public void updateByPrimaryKeySelective(Message message) throws IOException {
         SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try {
             MessageMapper mapper = session.getMapper(MessageMapper.class);
-            mapper.updateByPrimaryKeySelective(msg_id);
+            mapper.updateByPrimaryKeySelective(message);
             session.commit();
         } finally {
             session.close();
@@ -89,7 +89,7 @@ public class MessageMapperImpl implements MessageMapper{
     }
 
     @Override
-    public void updateByPrimaryKey(Integer msg_id) throws IOException {
+    public void updateByPrimaryKey(Message msg_id) throws IOException {
         SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try {

@@ -21,9 +21,9 @@ public interface SystemAdministratorMapper {
 
     public void insertSelective(SystemAdministrator systemAdministrator) throws IOException;
 
-    public void updateByPrimaryKeySelective(Integer saId) throws IOException;
+    public void updateByPrimaryKeySelective(SystemAdministrator systemAdministrator) throws IOException;
 
-    public void updateByPrimaryKey(Integer saId) throws IOException;
+    public void updateByPrimaryKey(SystemAdministrator systemAdministrator) throws IOException;
 
     public List<SystemAdministrator> getAll() throws IOException;
 

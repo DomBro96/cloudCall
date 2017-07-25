@@ -21,9 +21,9 @@ public interface SiteNumberMapper {
 
     public void insertSelective(SiteNumber siteNumber) throws IOException;
 
-    public void updateByPrimaryKeySelective(Integer mId) throws IOException;
+    public void updateByPrimaryKeySelective(SiteNumber siteNumber) throws IOException;
 
-    public void updateByPrimaryKey(Integer mId) throws IOException;
+    public void updateByPrimaryKey(SiteNumber siteNumber) throws IOException;
 
     public List<SiteNumber> getAll() throws IOException;
 }

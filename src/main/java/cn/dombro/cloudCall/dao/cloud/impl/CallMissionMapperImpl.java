@@ -73,12 +73,12 @@ public class CallMissionMapperImpl implements CallMissionMapper{
     }
 
     @Override
-    public void updateByPrimaryKeySelective(Long runningId) throws IOException {
+    public void updateByPrimaryKeySelective(CallMission callMission) throws IOException {
         SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try{
             CallMissionMapper mapper = session.getMapper(CallMissionMapper.class);
-            mapper.updateByPrimaryKeySelective(runningId);
+            mapper.updateByPrimaryKeySelective(callMission);
             session.commit();
         }finally {
             session.close();
@@ -86,12 +86,12 @@ public class CallMissionMapperImpl implements CallMissionMapper{
     }
 
     @Override
-    public void updateByPrimaryKey(Long runningId) throws IOException {
+    public void updateByPrimaryKey(CallMission callMission) throws IOException {
         SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try{
             CallMissionMapper mapper = session.getMapper(CallMissionMapper.class);
-            mapper.updateByPrimaryKey(runningId);
+            mapper.updateByPrimaryKey(callMission);
             session.commit();
         }finally {
             session.close();
