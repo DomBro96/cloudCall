@@ -27,7 +27,5 @@ public interface CallMissionMapper {
 
     public List<CallMission> getAll() throws IOException;
 
-//    public List<CallMission> getListRunningIdByMid(Integer mId) throws IOException;
-
     public List<CallMission> getByMid(Integer mId) throws IOException;
 }
