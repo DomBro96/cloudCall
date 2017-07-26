@@ -2,6 +2,7 @@ package cn.dombro.cloudCall.dao.tradition;
 
 import cn.dombro.cloudCall.entity.MissionInfo;
 import cn.dombro.cloudCall.entity.SiteNumber;
+import org.apache.ibatis.annotations.Param;
 
 import java.io.IOException;
 import java.util.List;
@@ -26,4 +27,6 @@ public interface SiteNumberMapper {
     public void updateByPrimaryKey(SiteNumber siteNumber) throws IOException;
 
     public List<SiteNumber> getAll() throws IOException;
+
+    public SiteNumber getListByPswAndUser(@Param("username") String username, @Param("password") String password) throws IOException;
 }

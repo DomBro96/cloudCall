@@ -15,6 +15,10 @@
     FROM call_result
     WHERE running_id = #{runningId,jdbcType=BIGINT}
   </select>
+  <select id="getListByMid" resultMap="BaseResultMap">
+    SELECT * FROM call_result
+    WHERE m_id = #{mId,jdbcType=INTEGER}
+  </select>
   <select id="getAll" resultMap="BaseResultMap">
     SELECT * FROM call_result
   </select>

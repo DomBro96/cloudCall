@@ -13,6 +13,16 @@ public class Mission {
 
     private Integer prepay;
 
+    private String missionClassify;
+
+    public String getMissionClassify() {
+        return missionClassify;
+    }
+
+    public void setMissionClassify(String missionClassify) {
+        this.missionClassify = missionClassify;
+    }
+
     private Integer acceptStatus;
 
     public Mission() {
@@ -83,6 +93,7 @@ public class Mission {
                 ", issueDate='" + issueDate + '\'' +
                 ", endDate='" + endDate + '\'' +
                 ", prepay=" + prepay +
+                ", missionClassify='" + missionClassify + '\'' +
                 ", acceptStatus=" + acceptStatus +
                 '}';
     }

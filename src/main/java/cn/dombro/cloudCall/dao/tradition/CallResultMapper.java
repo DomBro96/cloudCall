@@ -27,5 +27,7 @@ public interface CallResultMapper {
 
     public List<CallResult> getAll() throws IOException;
 
+    public List<CallResult> getListByMid(Integer mId) throws IOException;
+
     public CallResult getRemarkAndResultByRunningId(Long runningId) throws IOException;
 }

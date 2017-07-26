@@ -4,14 +4,18 @@ import cn.dombro.cloudCall.dao.cloud.impl.*;
 import cn.dombro.cloudCall.dao.info.Impl.EnterpriseCustomerMapperImpl;
 import cn.dombro.cloudCall.dao.info.Impl.SystemAdministratorMapperImpl;
 import cn.dombro.cloudCall.entity.*;
+import cn.dombro.cloudCall.interceptor.TokenInterceptor;
 import cn.dombro.cloudCall.util.ClaimUtil;
 import cn.dombro.cloudCall.util.FileUtil;
 import cn.dombro.cloudCall.util.MessageUtil;
+import cn.dombro.cloudCall.util.WebTokenUtil;
 import cn.dombro.cloudCall.viewobject.Mission;
-import cn.dombro.cloudCall.viewobject.MissionDetail;
 import cn.dombro.cloudCall.viewobject.UnMission;
+import com.jfinal.aop.Before;
+import com.jfinal.aop.Clear;
 import com.jfinal.core.Controller;
 import com.jfinal.upload.UploadFile;
+
 
 import java.io.IOException;
 import java.io.File;
@@ -22,10 +26,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Before(TokenInterceptor.class)
 public class EnterpriseCustomerController extends Controller {
 
     private Map<String, Object> jsonMap = null;
 
+    @Clear
     public void unauditmissioninfo() throws IOException {
         String authorization = "T001";
         String code = "N001";
@@ -34,6 +40,11 @@ public class EnterpriseCustomerController extends Controller {
         Map<String, String[]> paraMap = getParaMap();
         switch (method) {
             case "GET":
+                String token = getPara("token");
+                if (!WebTokenUtil.getTokenList().contains(token)){
+                    renderJson("authorization",authorization);
+                    break;
+                }
                 // 删除待审核
                 if (paraMap.containsKey("delete")) {
                     //获取前台传递过来的 mid 数组
@@ -72,6 +83,7 @@ public class EnterpriseCustomerController extends Controller {
                         unMission.setmId(unauditMissionInfo.getmId());
                         unMission.setMissionName(unauditMissionInfo.getMissionName());
                         unMission.setIssueDate(unauditMissionInfo.getIssueDate());
+                        unMission.setMissionClassify(unauditMissionInfo.getMissionClassify());
                         unMission.setEndDate(unauditMissionInfo.getEndDate());
                         unMission.setAuditStatus(unauditMissionInfo.getAuditStatus());
                         unMission.setPrepay(unauditMissionInfo.getPrepay());
@@ -87,7 +99,15 @@ public class EnterpriseCustomerController extends Controller {
                 break;
             case "POST":
                 UploadFile uploadFile = getFile("excleFile");
-                String uploadName = uploadFile.getFileName();
+                File sourcefile = uploadFile.getFile();
+                String uploadName = sourcefile.getName();
+                String token1 = getPara("token");
+                System.out.println(token1);
+                if (!WebTokenUtil.getTokenList().contains(token1)){
+                    System.out.println(WebTokenUtil.getTokenList());
+                    renderJson("authorization",authorization);
+                    break;
+                }
                 String extension = uploadName.substring(uploadName.lastIndexOf("."));
                 if (!".xlsx".equals(extension)) {
                     jsonMap = new HashMap<>();
@@ -102,7 +122,7 @@ public class EnterpriseCustomerController extends Controller {
                 String missionName = getPara("missionName");
                 LocalDate today = LocalDate.now();
                 String fileName = companyName + "-" + missionName + "-" + today.toString();
-                FileUtil.upload(uploadFile.getFile(), fileName);
+                FileUtil.upload(uploadFile.getFile(),fileName);
                 String excleUrl = FileUtil.getFilePath();
                 int prapay = getParaToInt("prapay");
                 LocalDate endDate = LocalDate.parse(getPara("endDate"));
@@ -113,11 +133,13 @@ public class EnterpriseCustomerController extends Controller {
                 unauditMissionInfo.setIssueDate(today);
                 unauditMissionInfo.setEndDate(endDate);
                 unauditMissionInfo.setPrepay(prapay);
+                unauditMissionInfo.setAuditStatus(1);
                 unauditMissionInfo.setMissionClassify(missionClassify);
                 unauditMissionInfo.setMainInfo(mainInfo);
                 unauditMissionInfo.setExcelUrl(excleUrl);
                 UnauditMissionInfoMapperImpl.getMissionInfoMapper().insertSelective(unauditMissionInfo);
                 List<SystemAdministrator> administratorList = SystemAdministratorMapperImpl.getAdministratorMapper().getAll();
+
                 //向 message 表中插入
                 for (SystemAdministrator administrator : administratorList) {
                     int saId = administrator.getSaId();
@@ -181,6 +203,7 @@ public class EnterpriseCustomerController extends Controller {
                 mission.setIssueDate(missionInfo.getIssueDate().toString());
                 mission.setEndDate(missionInfo.getEndDate().toString());
                 mission.setAcceptStatus(missionInfo.getAcceptStatus());
+                mission.setMissionClassify(missionInfo.getMissionClassify());
                 mission.setPrepay(missionInfo.getPrepay());
                 mission.setNumber(i + 1);
                 missionList.add(mission);
@@ -283,14 +306,10 @@ public class EnterpriseCustomerController extends Controller {
     }
 
     public void callmission_callresult() throws IOException {
-        Map<String, String[]> paraMap = getRequest().getParameterMap();
         int mId = getParaToInt("mId");
         List<CallMission> callMissionList = CallMissionMapperImpl.getMissionMapper().getByMid(mId);
-        if (paraMap.containsKey("mId")) {
-            setAttr("callMissionList", callMissionList);
-            forwardAction("/tr/callresult");
-        }
-
+        setAttr("callMissionList", callMissionList);
+        forwardAction("/tr/call_result");
     }
 
 }

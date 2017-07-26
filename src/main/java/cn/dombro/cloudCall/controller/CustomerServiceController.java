@@ -9,9 +9,11 @@ import cn.dombro.cloudCall.entity.CallMission;
 import cn.dombro.cloudCall.entity.CustomerService;
 import cn.dombro.cloudCall.entity.Message;
 import cn.dombro.cloudCall.entity.MissionInfo;
+import cn.dombro.cloudCall.interceptor.TokenInterceptor;
 import cn.dombro.cloudCall.util.ClaimUtil;
 import cn.dombro.cloudCall.util.MessageUtil;
 import cn.dombro.cloudCall.viewobject.Mission;
+import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
 
 import java.io.IOException;
@@ -21,6 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Before(TokenInterceptor.class)
 public class CustomerServiceController extends Controller {
 
     private Map<String,Object> jsonMap = null;
@@ -58,6 +61,7 @@ public class CustomerServiceController extends Controller {
                 jsonMap.put("missionName",missionInfo.getMissionName());
                 jsonMap.put("prepay", missionInfo.getPrepay());
                 jsonMap.put("endDate", missionInfo.getEndDate().toString());
+                jsonMap.put("spassword",missionInfo.getPassword());
                 jsonMap.put("missionClassify", missionInfo.getMissionClassify());
                 jsonMap.put("mainInfo", missionInfo.getMainInfo());
                 jsonMap.put("susername",missionInfo.getUsername());
@@ -77,6 +81,7 @@ public class CustomerServiceController extends Controller {
                       mission.setMissionName(missionInfo.getMissionName());
                       mission.setmId(missionInfo.getmId());
                       mission.setIssueDate(missionInfo.getIssueDate().toString());
+                      mission.setMissionClassify(missionInfo.getMissionClassify());
                       mission.setEndDate(missionInfo.getEndDate().toString());
                       mission.setAcceptStatus(missionInfo.getAcceptStatus());
                       mission.setPrepay(missionInfo.getPrepay());
@@ -92,45 +97,35 @@ public class CustomerServiceController extends Controller {
               int csId = (int) ClaimUtil.getValueByPara(getRequest(),"token","id");
               int mId = getParaToInt("mId");
               MissionInfo missionInfo = MissionInfoMapperImpl.getInfoMapper().selectByPrimaryKey(mId);
+              String missionName = missionInfo.getMissionName();
+              int ecId = missionInfo.getEcId();
               missionInfo.setCsId(csId);
               missionInfo.setAcceptStatus(1);
-              setAttr("mId",mId);
-              forwardAction("/tr/sitnumber");
+              MissionInfoMapperImpl.getInfoMapper().updateByPrimaryKey(missionInfo);
+              String messageText = MessageUtil.missionAcceptBySa(missionName);
+              Message message = new Message();
+              message.setReceiverId(ecId);
+              message.setReGroup("ec");
+              message.setSender(0);
+              message.setMessage(messageText);
+              message.setSendDateTime(LocalDateTime.now());
+              message.setReadd(0);
+              MessageMapperImpl.getMessageMapper().insertSelective(message);
+              jsonMap = new HashMap<>();
+              jsonMap.put("authorization","T000");
+              jsonMap.put("code","M000");
+              jsonMap.put("msg","接取任务成功");
+              renderJson(jsonMap);
               break;
       }
     }
 
-    public void sitnumber() throws IOException {
-       int mId = getAttr("mId");
-       String username = getAttr("username");
-       String password = getAttr("password");
-       MissionInfo missionInfo = MissionInfoMapperImpl.getInfoMapper().selectByPrimaryKey(mId);
-       String missionName = missionInfo.getMissionName();
-       int ecId = missionInfo.getEcId();
-       missionInfo.setUsername(username);
-       missionInfo.setPassword(password);
-       MissionInfoMapperImpl.getInfoMapper().updateByPrimaryKey(missionInfo);
-       String messageText = MessageUtil.missionAcceptBySa(missionName);
-       Message message = new Message();
-       message.setReceiverId(ecId);
-       message.setReGroup("ec");
-       message.setSender(0);
-       message.setMessage(messageText);
-       message.setSendDateTime(LocalDateTime.now());
-       message.setReadd(0);
-       MessageMapperImpl.getMessageMapper().insertSelective(message);
-       jsonMap = new HashMap<>();
-       jsonMap.put("authorization","T000");
-       jsonMap.put("code","M000");
-       jsonMap.put("msg","接取任务成功");
-       renderJson(jsonMap);
-    }
 
     public void callmission_callresult() throws IOException {
        int mId = getParaToInt("mId");
        List<CallMission> callMissionList = CallMissionMapperImpl.getMissionMapper().getByMid(mId);
        setAttr("callMissionList", callMissionList);
-       forwardAction("/tr/callresult");
+       forwardAction("/tr/call_result");
     }
 
     public void customerservice() throws IOException {
@@ -179,5 +174,4 @@ public class CustomerServiceController extends Controller {
                 break;
         }
     }
-
 }
