@@ -1,6 +1,5 @@
 package cn.dombro.cloudCall.dao.cloud;
 
-import cn.dombro.cloudCall.entity.CallMission;
 import cn.dombro.cloudCall.entity.MissionInfo;
 import org.apache.ibatis.annotations.Param;
 
@@ -35,8 +34,6 @@ public interface MissionInfoMapper {
     public void deleteByMidAndAccept(Integer mId) throws IOException;
 
     public List<MissionInfo> getClassAndClassifyAndInfoByQueryStamLiKe(String queryStatement) throws IOException;
-
-    public List<MissionInfo> getClassAndClassifyAndInfoByQueryStamAllLike(String queryStatement) throws IOException;
 
     public int getAcceptStatusByMid(Integer mId) throws IOException;
 

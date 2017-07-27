@@ -113,6 +113,18 @@ public class CallResultMapperImpl implements CallResultMapper{
     }
 
     @Override
+    public List<CallResult> getListByMid(Integer mId) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            CallResultMapper mapper = session.getMapper(CallResultMapper.class);
+            return mapper.getListByMid(mId);
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
     public CallResult getRemarkAndResultByRunningId(Long runningId) throws IOException {
         SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();

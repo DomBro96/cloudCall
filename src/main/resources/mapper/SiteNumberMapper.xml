@@ -12,6 +12,11 @@
   <select id="getAll" resultMap="BaseResultMap">
     SELECT * FROM site_number
   </select>
+  <select id="getListByPswAndUser" resultMap="BaseResultMap">
+    SELECT password FROM site_number
+    WHERE username = #{username,jdbcType=VARCHAR}
+    AND password = #{password,jdbcType=VARCHAR}
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

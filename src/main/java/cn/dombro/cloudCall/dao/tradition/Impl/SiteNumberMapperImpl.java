@@ -110,4 +110,16 @@ public class SiteNumberMapperImpl implements SiteNumberMapper{
             session.close();
         }
     }
+
+    @Override
+    public SiteNumber getListByPswAndUser(String username,String password) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            SiteNumberMapper siteNumberMapper = session.getMapper(SiteNumberMapper.class);
+            return siteNumberMapper.getListByPswAndUser(username,password);
+        }finally {
+            session.close();
+        }
+    }
 }

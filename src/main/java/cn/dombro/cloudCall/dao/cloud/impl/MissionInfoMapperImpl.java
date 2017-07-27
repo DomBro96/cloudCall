@@ -162,18 +162,6 @@ public class MissionInfoMapperImpl implements MissionInfoMapper{
     }
 
     @Override
-    public List<MissionInfo> getClassAndClassifyAndInfoByQueryStamAllLike(String queryStatement) throws IOException {
-        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
-        SqlSession session = sqlSessionFactory.openSession();
-        try {
-            MissionInfoMapper missionInfoMapper = session.getMapper(MissionInfoMapper.class);
-            return missionInfoMapper.getClassAndClassifyAndInfoByQueryStamAllLike(queryStatement);
-        } finally {
-            session.close();
-        }
-    }
-
-    @Override
     public int getAcceptStatusByMid(Integer mId) throws IOException {
         SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();

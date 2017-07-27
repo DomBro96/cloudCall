@@ -4,6 +4,8 @@ import cn.dombro.cloudCall.util.WebTokenUtil;
 import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;
 import com.jfinal.core.Controller;
+import com.jfinal.kit.HttpKit;
+import com.jfinal.upload.UploadFile;
 
 /**
  * Token 拦截器
@@ -11,13 +13,14 @@ import com.jfinal.core.Controller;
 public class TokenInterceptor implements Interceptor {
     @Override
     public void intercept(Invocation invocation) {
-       Controller controller = invocation.getController();
-       String token =  controller.getRequest().getParameter("token");
+        Controller controller = invocation.getController();
+        String token =  controller.getPara("token");
+        System.out.println(token);
        if (WebTokenUtil.getTokenList().contains(token)){
            invocation.invoke();
        }
        else {
-           controller.renderJson("该账号已过期，请重新登录");
+           controller.renderJson("authorization","T001");
        }
     }
 }

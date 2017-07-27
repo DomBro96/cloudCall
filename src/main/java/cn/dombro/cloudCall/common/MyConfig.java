@@ -18,6 +18,7 @@ public class MyConfig extends JFinalConfig {
         routes.add(new MessageRoute());
         routes.add(new LoginRoute());
         routes.add(new EnterpriseCustomerRoute());
+        routes.add(new SystemAdminRoute());
         routes.add(new CustomerServiceRoute());
         routes.add(new TraditionRoute());
     }
@@ -46,7 +47,7 @@ public class MyConfig extends JFinalConfig {
     //在项目关闭之前 清除 在内存中的TokenList
      public void beforeJFinalStop() {
 
-        System.out.println(WebTokenUtil.getTokenList().size());
+
         WebTokenUtil.getTokenList().clear();
     }
 

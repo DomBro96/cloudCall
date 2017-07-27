@@ -47,8 +47,8 @@
       SELECT *
       FROM mission_info
       WHERE (mission_name LIKE concat(concat('%', #{queryStatement,jdbcType=VARCHAR}), '%')
-             OR mission_classify LIKE concat(concat('%', #{queryStatement,jdbcType=VARCHAR}), '%')
-             OR main_info LIKE concat(concat('%', #{queryStatement,jdbcType=VARCHAR}), '%')
+              OR mission_classify LIKE concat(concat('%', #{queryStatement,jdbcType=VARCHAR}), '%')
+              OR main_info LIKE concat(concat('%', #{queryStatement,jdbcType=VARCHAR}), '%')
             )
       AND accept_status = 0
   </select>
@@ -56,9 +56,9 @@
         SELECT *
         FROM mission_info
         WHERE (mission_name LIKE concat(concat('%', #{queryStatement,jdbcType=VARCHAR}), '%')
-               OR mission_classify LIKE concat(concat('%', #{queryStatement,jdbcType=VARCHAR}), '%')
-               OR main_info LIKE concat(concat('%', #{queryStatement,jdbcType=VARCHAR}), '%')
-        )
+              OR mission_classify LIKE concat(concat('%', #{queryStatement,jdbcType=VARCHAR}), '%')
+              OR main_info LIKE concat(concat('%', #{queryStatement,jdbcType=VARCHAR}), '%')
+              )
   </select>
   <select id="deleteByMidAndAccept" parameterType="cn.dombro.cloudCall.entity.CallMission">
     DELETE FROM mission_info
