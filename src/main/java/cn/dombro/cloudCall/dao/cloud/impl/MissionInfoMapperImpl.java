@@ -232,4 +232,16 @@ public class MissionInfoMapperImpl implements MissionInfoMapper{
             session.close();
         }
     }
+
+    @Override
+    public List<MissionInfo> getAllByQueryStatementLike(String queryStatement) throws IOException {
+        SqlSessionFactory sqlSessionFactory = MySqlSessionFactory.getSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            MissionInfoMapper missionInfoMapper = session.getMapper(MissionInfoMapper.class);
+            return missionInfoMapper.getAllByQueryStatementLike(queryStatement);
+        } finally {
+            session.close();
+        }
+    }
 }

@@ -47,4 +47,6 @@ public interface MissionInfoMapper {
     public int getAcceptStatusNumByCsId(Integer csId) throws IOException;
 
     public int getAcceptStatusNumByAcceptStatus(Integer acceptStatus) throws IOException;
+
+    List<MissionInfo> getAllByQueryStatementLike(String queryStatement) throws IOException;
 }

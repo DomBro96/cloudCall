@@ -30,7 +30,7 @@
   </select>
   <select id="getAcceptStatusNumByCsId" resultType="java.lang.Integer">
     SELECT count(*) FROM mission_info
-    WHERE ec_id = #{ecId,jdbcType=INTEGER}
+    WHERE cs_id = #{csId,jdbcType=INTEGER}
     AND accept_status = 0
   </select>
   <select id="getAcceptStatusNumByEcIdAndAccept" resultType="java.lang.Integer">
@@ -52,12 +52,12 @@
             )
       AND accept_status = 0
   </select>
-  <select id="getClassAndClassifyAndInfoByQueryStamAllLiKe" resultMap="BaseResultMap">
+  <select id="getAllByQueryStatementLike" resultMap="BaseResultMap">
         SELECT *
         FROM mission_info
         WHERE (mission_name LIKE concat(concat('%', #{queryStatement,jdbcType=VARCHAR}), '%')
-        OR mission_classify LIKE concat(concat('%', #{queryStatement,jdbcType=VARCHAR}), '%')
-        OR main_info LIKE concat(concat('%', #{queryStatement,jdbcType=VARCHAR}), '%')
+               OR mission_classify LIKE concat(concat('%', #{queryStatement,jdbcType=VARCHAR}), '%')
+               OR main_info LIKE concat(concat('%', #{queryStatement,jdbcType=VARCHAR}), '%')
         )
   </select>
   <select id="deleteByMidAndAccept" parameterType="cn.dombro.cloudCall.entity.CallMission">
